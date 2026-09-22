@@ -1,0 +1,700 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="google" content="notranslate">
+    <title>Sukarobot Academy - Belajar Coding & Robotik</title>
+    
+    <!-- Font & Icons -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- PANGGIL FILE CSS UTAMA ANDA -->
+    <link rel="stylesheet" href="../css/style.css">
+    
+    <style>
+        .program-detail-section {
+            padding: 140px 0 80px;
+            background-color: var(--bg-light);
+            min-height: 100vh;
+        }
+        .detail-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            align-items: center;
+        }
+        .breadcrumb {
+            margin-bottom: 20px;
+            font-size: 0.95rem;
+            color: var(--text-muted);
+        }
+        .breadcrumb a {
+            color: var(--accent-blue);
+            font-weight: 600;
+        }
+        .detail-title {
+            font-size: 3.2rem;
+            color: var(--primary-navy);
+            margin-bottom: 10px;
+            line-height: 1.2;
+        }
+        .detail-subtitle {
+            font-size: 1.1rem;
+            color: var(--text-muted);
+            margin-bottom: 35px;
+        }
+        .info-list {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+        .detail-info-card {
+            background: var(--bg-white);
+            border-radius: var(--radius-md);
+            padding: 20px 24px;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            border: 1px solid var(--border-color);
+            box-shadow: var(--shadow-sm);
+            transition: var(--transition);
+        }
+        .detail-info-card:hover {
+            transform: translateX(8px);
+            box-shadow: var(--shadow-md);
+            border-color: var(--accent-blue);
+        }
+        .info-text-content h4 {
+            margin: 0 0 4px 0;
+            color: var(--primary-navy);
+            font-size: 1.05rem;
+        }
+        .info-text-content p {
+            margin: 0;
+            color: var(--text-muted);
+            font-size: 0.95rem;
+        }
+        .detail-image-wrapper {
+            background: var(--bg-white);
+            padding: 16px;
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-lg);
+            border: 1px solid var(--border-color);
+        }
+        .detail-image-wrapper img {
+            width: 100%;
+            height: auto;
+            border-radius: var(--radius-md);
+            display: block;
+        }
+
+        .badge-tag.badge-blue {
+        background-color: #e6f4ff; /* Warna background biru muda senada dengan ikon */
+        color: #005fcc; /* Warna teks biru tua agar kontras dan mudah dibaca */
+        padding: 4px 12px; /* Memberikan ruang di dalam box (atas-bawah 4px, kiri-kanan 12px) */
+        border-radius: 20px; /* Membuat sudutnya membulat seperti pil (pill-shape) */
+        font-size: 14px; /* Menyesuaikan ukuran huruf */
+        font-weight: 600; /* Membuat tulisan menjadi semi-bold */
+        display: inline-block;
+        }
+
+        .badge-tag.badge-purple {
+        background-color: #f4ebff; /* Warna background ungu muda senada dengan ikon */
+        color: #8224e3; /* Warna teks ungu tua agar kontras */
+        padding: 4px 12px; 
+        border-radius: 20px; /* Bentuk membulat seperti pil */
+        font-size: 14px; 
+        font-weight: 600; 
+        display: inline-block;
+        }
+
+        /* KELAS TAMBAHAN UNTUK ANIMASI SCROLL */
+        .reveal-on-scroll {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+        .reveal-on-scroll.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        @media (max-width: 768px) {
+            .detail-grid {
+                grid-template-columns: 1fr;
+            }
+            .detail-title {
+                font-size: 2.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header / Navbar -->
+    <header class="navbar-container scrolled" id="navbar">
+        <nav class="navbar">
+            <a href="../index.html" class="logo">
+                <img src="../images/logo.webp" alt="">
+            </a>
+            
+            <ul class="nav-links">
+                <li><a href="../index.html#keunggulan" class="nav-link">Tentang</a></li>
+                <li><a href="../index.html#program" class="nav-link">Program</a></li>
+                <li><a href="../index.html#kelas" class="nav-link">Kelas</a></li>
+                <li><a href="../index.html#kontak" class="nav-link">Kontak</a></li>
+            </ul>
+
+            <div class="nav-actions">
+                <a href="../index.html#program" class="btn btn-secondary">Katalog</a>
+                <a href="https://sukarobot.id/daftar" target="_blank" class="btn btn-primary">Daftar</a>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Konten Utama Detail -->
+    <section class="program-detail-section">
+        <div class="container">
+            <div class="detail-grid">
+                
+                <!-- Kolom Kiri -->
+                <div class="detail-content reveal-on-scroll">
+                    <div class="breadcrumb">
+                        <a href="../index.html"><i class="fas fa-home"></i> Beranda</a> &nbsp;>&nbsp; Program &nbsp;>&nbsp; Coding JR
+                    </div>
+                    
+                    <h1 class="detail-title">CODING JR</h1>
+                    
+                    <div class="info-list">
+                        <div class="detail-info-card">
+                            <div class="icon-box box-blue"><i class="fa-solid fa-bullseye"></i></div>
+                            <div class="info-text-content">
+                                <h4>Kategori Usia</h4>
+                                <p>TK Usia 4+</p>
+                            </div>
+                        </div>
+
+                        <div class="detail-info-card">
+                            <div class="icon-box box-green"><i class="fa-solid fa-book-open"></i></div>
+                            <div class="info-text-content">
+                                <h4>Total Pertemuan</h4>
+                                <p>16 Pertemuan (4 Bulan)</p>
+                            </div>
+                        </div>
+
+                        <div class="detail-info-card">
+                            <div class="icon-box box-orange"><i class="fa-solid fa-clock"></i></div>
+                            <div class="info-text-content">
+                                <h4>Durasi Belajar</h4>
+                                <p>1x Pertemuan (90 Menit)</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Kolom Kanan -->
+                <div class="detail-visual reveal-on-scroll">
+                    <div class="detail-image-wrapper">
+                        <img src="../images/covercjr.jpg" alt="Kit Robotik Coding JR">
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Section Materi Pembelajaran -->
+    <section class="section reveal-on-scroll" style="background-color: #FFFFFF;">
+        <div class="container container-narrow">
+            
+            <div class="section-header">
+                <h2>Materi <span class="text-gradient">Pembelajaran</span></h2>
+                <p>16 Pertemuan Pembelajaran</p>
+            </div>
+
+            <div class="accordion-wrapper">
+                
+                <!-- Accordion 1 -->
+                <div class="accordion-item">
+                    <button class="accordion-header">
+                        <div style="display: flex; align-items: center; gap: 15px;">
+                            <span class="icon-box box-blue" style="margin-bottom: 0; width: 42px; height: 42px; font-size: 1.1rem;">
+                                <i class="fa-solid fa-layer-group"></i>
+                            </span>
+                            Pertemuan 1 - 8
+                        </div>
+                        <div style="display: flex; align-items: center; gap: 15px;">
+                            <span class="badge-tag badge-blue">8 Materi</span>
+                            <i class="fa-solid fa-chevron-down icon-acc"></i>
+                        </div>
+                    </button>
+                    <div class="accordion-content">
+                        <div style="padding: 15px 0 5px 0; display: flex; flex-direction: column; gap: 12px;">
+                            <div style="display: flex; align-items: center; justify-content: space-between; background: #F8FAFC; border: 1px solid #E2E8F0; padding: 12px 16px; border-radius: 12px;">
+                                <div style="display: flex; align-items: center; gap: 14px;">
+                                    <div style="width: 32px; height: 32px; background: #2563EB; color: #FFFFFF; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 0.9rem;">1</div>
+                                    <div>
+                                        <h4 style="margin: 0 0 2px 0; font-size: 0.95rem; color: var(--primary-navy);">Pengenalan Coding For Kids With Scratch Jr</h4>
+                                        <p style="margin: 0; font-size: 0.8rem; color: var(--text-muted);">Pertemuan 1 • 90 Menit</p>
+                                    </div>
+                                </div>
+                                <i class="fa-solid fa-book-open" style="color: #64748B; font-size: 0.95rem;"></i>
+                            </div>
+                            <div style="display: flex; align-items: center; justify-content: space-between; background: #F8FAFC; border: 1px solid #E2E8F0; padding: 12px 16px; border-radius: 12px;">
+                                <div style="display: flex; align-items: center; gap: 14px;">
+                                    <div style="width: 32px; height: 32px; background: #2563EB; color: #FFFFFF; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 0.9rem;">2</div>
+                                    <div>
+                                        <h4 style="margin: 0 0 2px 0; font-size: 0.95rem; color: var(--primary-navy);">Project Under The Sea</h4>
+                                        <p style="margin: 0; font-size: 0.8rem; color: var(--text-muted);">Pertemuan 2 • 90 Menit</p>
+                                    </div>
+                                </div>
+                                <i class="fa-solid fa-book-open" style="color: #64748B; font-size: 0.95rem;"></i>
+                            </div>
+                            <div style="display: flex; align-items: center; justify-content: space-between; background: #F8FAFC; border: 1px solid #E2E8F0; padding: 12px 16px; border-radius: 12px;">
+                                <div style="display: flex; align-items: center; gap: 14px;">
+                                    <div style="width: 32px; height: 32px; background: #2563EB; color: #FFFFFF; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 0.9rem;">3</div>
+                                    <div>
+                                        <h4 style="margin: 0 0 2px 0; font-size: 0.95rem; color: var(--primary-navy);">Project Ride A Bike</h4>
+                                        <p style="margin: 0; font-size: 0.8rem; color: var(--text-muted);">Pertemuan 3 • 90 Menit</p>
+                                    </div>
+                                </div>
+                                <i class="fa-solid fa-book-open" style="color: #64748B; font-size: 0.95rem;"></i>
+                            </div>
+                            <div style="display: flex; align-items: center; justify-content: space-between; background: #F8FAFC; border: 1px solid #E2E8F0; padding: 12px 16px; border-radius: 12px;">
+                                <div style="display: flex; align-items: center; gap: 14px;">
+                                    <div style="width: 32px; height: 32px; background: #2563EB; color: #FFFFFF; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 0.9rem;">4</div>
+                                    <div>
+                                        <h4 style="margin: 0 0 2px 0; font-size: 0.95rem; color: var(--primary-navy);">Project Sixe Up and Down</h4>
+                                        <p style="margin: 0; font-size: 0.8rem; color: var(--text-muted);">Pertemuan 4 • 90 Menit</p>
+                                    </div>
+                                </div>
+                                <i class="fa-solid fa-book-open" style="color: #64748B; font-size: 0.95rem;"></i>
+                            </div>
+                            <div style="display: flex; align-items: center; justify-content: space-between; background: #F8FAFC; border: 1px solid #E2E8F0; padding: 12px 16px; border-radius: 12px;">
+                                <div style="display: flex; align-items: center; gap: 14px;">
+                                    <div style="width: 32px; height: 32px; background: #2563EB; color: #FFFFFF; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 0.9rem;">5</div>
+                                    <div>
+                                        <h4 style="margin: 0 0 2px 0; font-size: 0.95rem; color: var(--primary-navy);">Project Jumping Challenge</h4>
+                                        <p style="margin: 0; font-size: 0.8rem; color: var(--text-muted);">Pertemuan 5 • 90 Menit</p>
+                                    </div>
+                                </div>
+                                <i class="fa-solid fa-book-open" style="color: #64748B; font-size: 0.95rem;"></i>
+                            </div>
+                            <div style="display: flex; align-items: center; justify-content: space-between; background: #F8FAFC; border: 1px solid #E2E8F0; padding: 12px 16px; border-radius: 12px;">
+                                <div style="display: flex; align-items: center; gap: 14px;">
+                                    <div style="width: 32px; height: 32px; background: #2563EB; color: #FFFFFF; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 0.9rem;">6</div>
+                                    <div>
+                                        <h4 style="margin: 0 0 2px 0; font-size: 0.95rem; color: var(--primary-navy);">Project Windwill</h4>
+                                        <p style="margin: 0; font-size: 0.8rem; color: var(--text-muted);">Pertemuan 6 • 90 Menit</p>
+                                    </div>
+                                </div>
+                                <i class="fa-solid fa-book-open" style="color: #64748B; font-size: 0.95rem;"></i>
+                            </div>
+                            <div style="display: flex; align-items: center; justify-content: space-between; background: #F8FAFC; border: 1px solid #E2E8F0; padding: 12px 16px; border-radius: 12px;">
+                                <div style="display: flex; align-items: center; gap: 14px;">
+                                    <div style="width: 32px; height: 32px; background: #2563EB; color: #FFFFFF; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 0.9rem;">7</div>
+                                    <div>
+                                        <h4 style="margin: 0 0 2px 0; font-size: 0.95rem; color: var(--primary-navy);">Project Space Button</h4>
+                                        <p style="margin: 0; font-size: 0.8rem; color: var(--text-muted);">Pertemuan 7 • 90 Menit</p>
+                                    </div>
+                                </div>
+                                <i class="fa-solid fa-book-open" style="color: #64748B; font-size: 0.95rem;"></i>
+                            </div>
+                            <div style="display: flex; align-items: center; justify-content: space-between; background: #F8FAFC; border: 1px solid #E2E8F0; padding: 12px 16px; border-radius: 12px;">
+                                <div style="display: flex; align-items: center; gap: 14px;">
+                                    <div style="width: 32px; height: 32px; background: #2563EB; color: #FFFFFF; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 0.9rem;">8</div>
+                                    <div>
+                                        <h4 style="margin: 0 0 2px 0; font-size: 0.95rem; color: var(--primary-navy);">Project Playing Basket</h4>
+                                        <p style="margin: 0; font-size: 0.8rem; color: var(--text-muted);">Pertemuan 8 • 90 Menit</p>
+                                    </div>
+                                </div>
+                                <i class="fa-solid fa-book-open" style="color: #64748B; font-size: 0.95rem;"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Accordion 2 -->
+                <div class="accordion-item">
+                    <button class="accordion-header">
+                        <div style="display: flex; align-items: center; gap: 15px;">
+                            <span class="icon-box box-purple" style="margin-bottom: 0; width: 42px; height: 42px; font-size: 1.1rem;">
+                                <i class="fa-solid fa-bullseye"></i>
+                            </span>
+                            Pertemuan 9 - 16
+                        </div>
+                        <div style="display: flex; align-items: center; gap: 15px;">
+                            <span class="badge-tag badge-purple">8 Materi</span>
+                            <i class="fa-solid fa-chevron-down icon-acc"></i>
+                        </div>
+                    </button>
+                    <div class="accordion-content">
+                        <div style="padding: 15px 0 5px 0; display: flex; flex-direction: column; gap: 12px;">
+                            <div style="display: flex; align-items: center; justify-content: space-between; background: #F8FAFC; border: 1px solid #E2E8F0; padding: 12px 16px; border-radius: 12px;">
+                                <div style="display: flex; align-items: center; gap: 14px;">
+                                    <div style="width: 32px; height: 32px; background: #9333EA; color: #FFFFFF; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 0.9rem;">9</div>
+                                    <div>
+                                        <h4 style="margin: 0 0 2px 0; font-size: 0.95rem; color: var(--primary-navy);">Project Play With Stars</h4>
+                                        <p style="margin: 0; font-size: 0.8rem; color: var(--text-muted);">Pertemuan 9 • 90 Menit</p>
+                                    </div>
+                                </div>
+                                <i class="fa-solid fa-book-open" style="color: #64748B; font-size: 0.95rem;"></i>
+                            </div>
+                            <div style="display: flex; align-items: center; justify-content: space-between; background: #F8FAFC; border: 1px solid #E2E8F0; padding: 12px 16px; border-radius: 12px;">
+                                <div style="display: flex; align-items: center; gap: 14px;">
+                                    <div style="width: 32px; height: 32px; background: #9333EA; color: #FFFFFF; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 0.9rem;">10</div>
+                                    <div>
+                                        <h4 style="margin: 0 0 2px 0; font-size: 0.95rem; color: var(--primary-navy);">Project Race A Car</h4>
+                                        <p style="margin: 0; font-size: 0.8rem; color: var(--text-muted);">Pertemuan 10 • 90 Menit</p>
+                                    </div>
+                                </div>
+                                <i class="fa-solid fa-book-open" style="color: #64748B; font-size: 0.95rem;"></i>
+                            </div>
+                            <div style="display: flex; align-items: center; justify-content: space-between; background: #F8FAFC; border: 1px solid #E2E8F0; padding: 12px 16px; border-radius: 12px;">
+                                <div style="display: flex; align-items: center; gap: 14px;">
+                                    <div style="width: 32px; height: 32px; background: #9333EA; color: #FFFFFF; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 0.9rem;">11</div>
+                                    <div>
+                                        <h4 style="margin: 0 0 2px 0; font-size: 0.95rem; color: var(--primary-navy);">Project Mini Zoo</h4>
+                                        <p style="margin: 0; font-size: 0.8rem; color: var(--text-muted);">Pertemuan 11 • 90 Menit</p>
+                                    </div>
+                                </div>
+                                <i class="fa-solid fa-book-open" style="color: #64748B; font-size: 0.95rem;"></i>
+                            </div>
+                            <div style="display: flex; align-items: center; justify-content: space-between; background: #F8FAFC; border: 1px solid #E2E8F0; padding: 12px 16px; border-radius: 12px;">
+                                <div style="display: flex; align-items: center; gap: 14px;">
+                                    <div style="width: 32px; height: 32px; background: #9333EA; color: #FFFFFF; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 0.9rem;">12</div>
+                                    <div>
+                                        <h4 style="margin: 0 0 2px 0; font-size: 0.95rem; color: var(--primary-navy);">Project Be A Big Or Small</h4>
+                                        <p style="margin: 0; font-size: 0.8rem; color: var(--text-muted);">Pertemuan 12 • 90 Menit</p>
+                                    </div>
+                                </div>
+                                <i class="fa-solid fa-book-open" style="color: #64748B; font-size: 0.95rem;"></i>
+                            </div>
+                            <div style="display: flex; align-items: center; justify-content: space-between; background: #F8FAFC; border: 1px solid #E2E8F0; padding: 12px 16px; border-radius: 12px;">
+                                <div style="display: flex; align-items: center; gap: 14px;">
+                                    <div style="width: 32px; height: 32px; background: #9333EA; color: #FFFFFF; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 0.9rem;">13</div>
+                                    <div>
+                                        <h4 style="margin: 0 0 2px 0; font-size: 0.95rem; color: var(--primary-navy);">Project Ned Go To Beach</h4>
+                                        <p style="margin: 0; font-size: 0.8rem; color: var(--text-muted);">Pertemuan 13 • 90 Menit</p>
+                                    </div>
+                                </div>
+                                <i class="fa-solid fa-book-open" style="color: #64748B; font-size: 0.95rem;"></i>
+                            </div>
+                            <div style="display: flex; align-items: center; justify-content: space-between; background: #F8FAFC; border: 1px solid #E2E8F0; padding: 12px 16px; border-radius: 12px;">
+                                <div style="display: flex; align-items: center; gap: 14px;">
+                                    <div style="width: 32px; height: 32px; background: #9333EA; color: #FFFFFF; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 0.9rem;">14</div>
+                                    <div>
+                                        <h4 style="margin: 0 0 2px 0; font-size: 0.95rem; color: var(--primary-navy);">Project Ned Playing Ball With Friend</h4>
+                                        <p style="margin: 0; font-size: 0.8rem; color: var(--text-muted);">Pertemuan 14 • 90 Menit</p>
+                                    </div>
+                                </div>
+                                <i class="fa-solid fa-book-open" style="color: #64748B; font-size: 0.95rem;"></i>
+                            </div>
+                            <div style="display: flex; align-items: center; justify-content: space-between; background: #F8FAFC; border: 1px solid #E2E8F0; padding: 12px 16px; border-radius: 12px;">
+                                <div style="display: flex; align-items: center; gap: 14px;">
+                                    <div style="width: 32px; height: 32px; background: #9333EA; color: #FFFFFF; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 0.9rem;">15</div>
+                                    <div>
+                                        <h4 style="margin: 0 0 2px 0; font-size: 0.95rem; color: var(--primary-navy);">Project Ping-pong Game1</h4>
+                                        <p style="margin: 0; font-size: 0.8rem; color: var(--text-muted);">Pertemuan 15 • 90 Menit</p>
+                                    </div>
+                                </div>
+                                <i class="fa-solid fa-book-open" style="color: #64748B; font-size: 0.95rem;"></i>
+                            </div>
+                            <div style="display: flex; align-items: center; justify-content: space-between; background: #F8FAFC; border: 1px solid #E2E8F0; padding: 12px 16px; border-radius: 12px;">
+                                <div style="display: flex; align-items: center; gap: 14px;">
+                                    <div style="width: 32px; height: 32px; background: #9333EA; color: #FFFFFF; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 0.9rem;">16</div>
+                                    <div>
+                                        <h4 style="margin: 0 0 2px 0; font-size: 0.95rem; color: var(--primary-navy);">Project Shoote Game</h4>
+                                        <p style="margin: 0; font-size: 0.8rem; color: var(--text-muted);">Pertemuan 16 • 90 Menit</p>
+                                    </div>
+                                </div>
+                                <i class="fa-solid fa-book-open" style="color: #64748B; font-size: 0.95rem;"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Section Mengapa Memilih Kelas Ini -->
+    <section class="section light-bg reveal-on-scroll">
+        <div class="container">
+            <div class="grid grid-2" style="align-items: flex-start; gap: 50px;">
+                <div class="why-choose-content">
+                    <h2 style="font-size: 2.2rem; margin-bottom: 20px; color: var(--primary-navy);">Mengapa <span class="text-gradient">Memilih Kelas Ini?</span></h2>
+                    <p style="color: var(--text-muted); margin-bottom: 20px; line-height: 1.7; font-size: 1rem;">
+                        Program <b>Coding for Kids Jr</b> ditujukan bagi <b>anak usia dini</b> sebagai <b>langkah pertama mengenal logika pemrograman</b>. 
+                        Peserta akan diperkenalkan pada <b>konsep dasar coding</b>, <b>logika pemrograman</b>, serta <b>pembuatan animasi atau game mini</b> 
+                        menggunakan <b>platform visual yang mudah dipahami</b> seperti <b>Scratch Jr</b>.
+                    </p>
+                    <p style="color: var(--text-muted); line-height: 1.7; font-size: 1rem;">
+                        Dengan <b>metode belajar sambil bermain</b>, anak-anak dapat <b>berkreasi membuat cerita interaktif</b>, 
+                        <b>animasi sederhana</b>, hingga <b>game mini sesuai imajinasinya</b>. 
+                        Program ini menjadi <b>langkah awal yang tepat</b> untuk <b>menumbuhkan minat terhadap teknologi</b> 
+                        dan <b>pemrograman sejak usia dini</b>.
+                    </p>
+                </div>
+                <div class="benefits-content">
+                    <h3 style="font-size: 1.3rem; margin-bottom: 25px; color: var(--primary-navy); display: flex; align-items: center; gap: 10px;">
+                        <i class="fa-solid fa-wand-magic-sparkles" style="color: #FACC15;"></i> Manfaat yang Akan Anda Dapatkan
+                    </h3>
+                    <div style="display: flex; flex-direction: column; gap: 15px;">
+                        <div style="display: flex; align-items: center; gap: 15px; background: #FFFFFF; padding: 16px 20px; border-radius: 12px; border: 1px solid #E2E8F0; box-shadow: var(--shadow-sm); transition: transform 0.3s ease;" onmouseover="this.style.transform='translateX(8px)'" onmouseout="this.style.transform='translateX(0)'">
+                            <div class="icon-box box-green" style="margin-bottom: 0; width: 42px; height: 42px; font-size: 1.1rem; flex-shrink: 0;"><i class="fa-solid fa-bullseye"></i></div>
+                            <p style="margin: 0; font-size: 0.95rem; color: var(--text-dark); font-weight: 500;">Mengenal block code pada Coding Jr.</p>
+                        </div>
+                        <div style="display: flex; align-items: center; gap: 15px; background: #FFFFFF; padding: 16px 20px; border-radius: 12px; border: 1px solid #E2E8F0; box-shadow: var(--shadow-sm); transition: transform 0.3s ease;" onmouseover="this.style.transform='translateX(8px)'" onmouseout="this.style.transform='translateX(0)'">
+                            <div class="icon-box box-blue" style="margin-bottom: 0; width: 42px; height: 42px; font-size: 1.1rem; flex-shrink: 0;"><i class="fa-solid fa-chalkboard-user"></i></div>
+                            <p style="margin: 0; font-size: 0.95rem; color: var(--text-dark); font-weight: 500;">Dapat membuat animasi dan game sesuai dengan code block yang tersedia.</p>
+                        </div>
+                        <div style="display: flex; align-items: center; gap: 15px; background: #FFFFFF; padding: 16px 20px; border-radius: 12px; border: 1px solid #E2E8F0; box-shadow: var(--shadow-sm); transition: transform 0.3s ease;" onmouseover="this.style.transform='translateX(8px)'" onmouseout="this.style.transform='translateX(0)'">
+                            <div class="icon-box box-purple" style="margin-bottom: 0; width: 42px; height: 42px; font-size: 1.1rem; flex-shrink: 0;"><i class="fa-solid fa-screwdriver-wrench"></i></div>
+                            <p style="margin: 0; font-size: 0.95rem; color: var(--text-dark); font-weight: 500;">Berkreatifitas dan berinovasi mengembangkan project animasi dan game sesuai dengan imajinasi mereka.</p>
+                        </div>
+                        <div style="display: flex; align-items: center; gap: 15px; background: #FFFFFF; padding: 16px 20px; border-radius: 12px; border: 1px solid #E2E8F0; box-shadow: var(--shadow-sm); transition: transform 0.3s ease;" onmouseover="this.style.transform='translateX(8px)'" onmouseout="this.style.transform='translateX(0)'">
+                            <div class="icon-box box-orange" style="margin-bottom: 0; width: 42px; height: 42px; font-size: 1.1rem; flex-shrink: 0;"><i class="fa-solid fa-trophy"></i></div>
+                            <p style="margin: 0; font-size: 0.95rem; color: var(--text-dark); font-weight: 500;">Dapat mengembangkan Project Coding Scratch Jr.</p>
+                        </div>
+                        <div style="display: flex; align-items: center; gap: 15px; background: #FFFFFF; padding: 16px 20px; border-radius: 12px; border: 1px solid #E2E8F0; box-shadow: var(--shadow-sm); transition: transform 0.3s ease;" onmouseover="this.style.transform='translateX(8px)'" onmouseout="this.style.transform='translateX(0)'">
+                            <div class="icon-box" style="background-color: #FCE7F3; color: #DB2777; margin-bottom: 0; width: 42px; height: 42px; font-size: 1.1rem; flex-shrink: 0;"><i class="fa-solid fa-handshake-angle"></i></div>
+                            <p style="margin: 0; font-size: 0.95rem; color: var(--text-dark); font-weight: 500;">Memahami keterkaitan coding yang dibuat dalam kehidupan sehari-hari.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section Harga & Promo Spesial -->
+    <section class="section reveal-on-scroll" style="background-color: #FFFFFF; text-align: center;">
+        <div class="container">
+            <div class="section-header" style="margin-bottom: 30px;">
+                <h2 style="font-size: 2.2rem; color: var(--primary-navy);"><i class="fa-solid fa-sack-dollar" style="color: #FACC15;"></i> Harga & Promo Spesial</h2>
+                <p style="color: var(--text-muted); font-size: 1rem; max-width: 700px; margin: 10px auto;">Pilih paket pembelajaran yang sesuai dengan kebutuhan anak Anda. Semua paket sudah termasuk gratis biaya pendaftaran!</p>
+            </div>
+            <div style="display: inline-block; background-color: #10B981; color: #FFFFFF; padding: 12px 30px; border-radius: 50px; font-weight: 700; font-size: 0.95rem; margin-bottom: 50px; box-shadow: 0 8px 20px rgba(16, 185, 129, 0.25);">
+                <i class="fa-solid fa-party-horn"></i> GRATIS BIAYA PENDAFTARAN UNTUK SEMUA PAKET!
+            </div>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 25px; text-align: left;">
+                
+                <!-- Paket Reguler -->
+                <div style="background: #FFFFFF; border-radius: 24px; padding: 30px 20px; border: 1px solid #E2E8F0; box-shadow: 0 10px 25px rgba(0,0,0,0.04); display: flex; flex-direction: column; transition: transform 0.3s ease;" onmouseover="this.style.transform='translateY(-10px)'" onmouseout="this.style.transform='translateY(0)'">
+                    <div class="icon-box box-blue center-box" style="width: 60px; height: 60px; border-radius: 50%; font-size: 1.4rem; margin-bottom: 15px;"><i class="fa-solid fa-users"></i></div>
+                    <h3 style="font-size: 1.25rem; color: var(--primary-navy); margin: 0; text-align: center;">Paket Reguler</h3>
+                    <p style="font-size: 0.8rem; color: var(--text-muted); text-align: center; margin: 4px 0 15px;">Kelas Berkelompok 3-7 Siswa</p>
+                    <div style="color: #2563EB; font-size: 2.2rem; font-weight: 800; line-height: 1; text-align: center;">Rp 1JT</div>
+                    <p style="font-size: 0.8rem; color: var(--text-muted); text-align: center; margin: 5px 0 20px;">16 Pertemuan (4 Bulan)</p>
+                    <div style="background: #EFF6FF; border-radius: 12px; padding: 15px; margin-bottom: 20px;">
+                        <div style="font-size: 0.85rem; font-weight: 700; color: #1E3A8A; margin-bottom: 8px;"><i class="fa-solid fa-wallet"></i> Opsi Cicilan:</div>
+                        <ul style="font-size: 0.75rem; color: #3B82F6; margin: 0; padding-left: 16px; line-height: 1.5;"><li>Cicilan Bulanan</li><li>Cicilan dengan pilihan Skema Pembayaran</li></ul>
+                    </div>
+                    <ul style="font-size: 0.85rem; color: var(--text-dark); margin: 0 0 25px 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 10px;">
+                        <li><i class="fa-solid fa-check" style="color: #10B981; margin-right: 8px;"></i> 16 Pertemuan (4 Bulan)</li>
+                        <li><i class="fa-solid fa-check" style="color: #10B981; margin-right: 8px;"></i> Materi Lengkap</li>
+                    </ul>
+                    <div style="flex-grow: 1;"></div>
+                    <a href="https://api.whatsapp.com/send?phone=6285795899901&text=Halo%20kak%2C%20Saya%20tertarik%20ikut%20kursus%20Coding%20Jr%20Paket%20Reguler!" target="_blank" style="display: block; background: #2563EB; color: #FFFFFF; text-align: center; padding: 12px; border-radius: 12px; font-weight: 600; font-size: 0.9rem; text-decoration: none; transition: background 0.3s ease;" onmouseover="this.style.background='#1E40AF'" onmouseout="this.style.background='#2563EB'">Daftar Paket Reguler</a>
+                </div>
+
+                <!-- Paket Semi Privat -->
+                <div style="background: #FFFFFF; border-radius: 24px; padding: 30px 20px; border: 1px solid #E2E8F0; box-shadow: 0 10px 25px rgba(0,0,0,0.04); display: flex; flex-direction: column; transition: transform 0.3s ease;" onmouseover="this.style.transform='translateY(-10px)'" onmouseout="this.style.transform='translateY(0)'">
+                    <div class="icon-box box-purple center-box" style="width: 60px; height: 60px; border-radius: 50%; font-size: 1.4rem; margin-bottom: 15px;"><i class="fa-solid fa-user-group"></i></div>
+                    <h3 style="font-size: 1.25rem; color: var(--primary-navy); margin: 0; text-align: center;">Paket Semi Privat</h3>
+                    <p style="font-size: 0.8rem; color: var(--text-muted); text-align: center; margin: 4px 0 15px;">Kelas Kecil 2 Siswa</p>
+                    <div style="color: #9333EA; font-size: 2.2rem; font-weight: 800; line-height: 1; text-align: center;">Rp 1.4JT</div>
+                    <p style="font-size: 0.8rem; color: var(--text-muted); text-align: center; margin: 5px 0 20px;">16 Pertemuan (4 Bulan)</p>
+                    <div style="background: #F3E8FF; border-radius: 12px; padding: 15px; margin-bottom: 20px;">
+                        <div style="font-size: 0.85rem; font-weight: 700; color: #581C87; margin-bottom: 8px;"><i class="fa-solid fa-wallet"></i> Opsi Cicilan:</div>
+                        <ul style="font-size: 0.75rem; color: #7E22CE; margin: 0; padding-left: 16px; line-height: 1.5;"><li>Cicilan Bulanan</li><li>Cicilan dengan pilihan Skema Pembayaran</li></ul>
+                    </div>
+                    <ul style="font-size: 0.85rem; color: var(--text-dark); margin: 0 0 25px 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 10px;">
+                        <li><i class="fa-solid fa-check" style="color: #10B981; margin-right: 8px;"></i> 16 Pertemuan (4 Bulan)</li>
+                        <li><i class="fa-solid fa-check" style="color: #10B981; margin-right: 8px;"></i> Materi Lengkap</li>
+                    </ul>
+                    <div style="flex-grow: 1;"></div>
+                    <a href="https://api.whatsapp.com/send?phone=6285795899901&text=Halo%20kak%2C%20Saya%20tertarik%20ikut%20kursus%20Coding%20Jr%20Paket%20Semi%20Privat!" target="_blank" style="display: block; background: #9333EA; color: #FFFFFF; text-align: center; padding: 12px; border-radius: 12px; font-weight: 600; font-size: 0.9rem; text-decoration: none; transition: background 0.3s ease;" onmouseover="this.style.background='#7E22CE'" onmouseout="this.style.background='#9333EA'">Daftar Paket Semi Privat</a>
+                </div>
+
+                <!-- Paket Privat -->
+                <div style="background: #FFFFFF; border-radius: 24px; padding: 30px 20px; border: 1px solid #E2E8F0; box-shadow: 0 10px 25px rgba(0,0,0,0.04); display: flex; flex-direction: column; transition: transform 0.3s ease;" onmouseover="this.style.transform='translateY(-10px)'" onmouseout="this.style.transform='translateY(0)'">
+                    <div class="icon-box box-yellow center-box" style="width: 60px; height: 60px; border-radius: 50%; font-size: 1.4rem; margin-bottom: 15px;"><i class="fa-solid fa-user"></i></div>
+                    <h3 style="font-size: 1.25rem; color: var(--primary-navy); margin: 0; text-align: center;">Paket Privat</h3>
+                    <p style="font-size: 0.8rem; color: var(--text-muted); text-align: center; margin: 4px 0 15px;">Kelas Privat 1 Siswa</p>
+                    <div style="color: #EAB308; font-size: 2.2rem; font-weight: 800; line-height: 1; text-align: center;">Rp 1.8JT</div>
+                    <p style="font-size: 0.8rem; color: var(--text-muted); text-align: center; margin: 5px 0 20px;">16 Pertemuan (4 Bulan)</p>
+                    <div style="background: #FEFCE8; border-radius: 12px; padding: 15px; margin-bottom: 20px;">
+                        <div style="font-size: 0.85rem; font-weight: 700; color: #854D0E; margin-bottom: 8px;"><i class="fa-solid fa-wallet"></i> Opsi Cicilan:</div>
+                        <ul style="font-size: 0.75rem; color: #CA8A04; margin: 0; padding-left: 16px; line-height: 1.5;"><li>Cicilan Bulanan</li><li>Cicilan dengan pilihan Skema Pembayaran</li></ul>
+                    </div>
+                    <ul style="font-size: 0.85rem; color: var(--text-dark); margin: 0 0 25px 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 10px;">
+                        <li><i class="fa-solid fa-check" style="color: #10B981; margin-right: 8px;"></i> 16 Pertemuan (4 Bulan)</li>
+                        <li><i class="fa-solid fa-check" style="color: #10B981; margin-right: 8px;"></i> Materi Lengkap</li>
+                    </ul>
+                    <div style="flex-grow: 1;"></div>
+                    <a href="https://api.whatsapp.com/send?phone=6285795899901&text=Halo%20kak%2C%20Saya%20tertarik%20ikut%20kursus%20Coding%20Jr%20Paket%20Privat!" target="_blank" style="display: block; background: #EAB308; color: #FFFFFF; text-align: center; padding: 12px; border-radius: 12px; font-weight: 600; font-size: 0.9rem; text-decoration: none; transition: background 0.3s ease;" onmouseover="this.style.background='#CA8A04'" onmouseout="this.style.background='#EAB308'">Daftar Paket Privat</a>
+                </div>
+
+                <!-- Paket Ekskul -->
+                <div style="background: #FFFFFF; border-radius: 24px; padding: 30px 20px; border: 1px solid #E2E8F0; box-shadow: 0 10px 25px rgba(0,0,0,0.04); display: flex; flex-direction: column; transition: transform 0.3s ease;" onmouseover="this.style.transform='translateY(-10px)'" onmouseout="this.style.transform='translateY(0)'">
+                    <div class="icon-box box-green center-box" style="width: 60px; height: 60px; border-radius: 50%; font-size: 1.4rem; margin-bottom: 15px;"><i class="fa-solid fa-school"></i></div>
+                    <h3 style="font-size: 1.25rem; color: var(--primary-navy); margin: 0; text-align: center;">Paket Ekskul</h3>
+                    <p style="font-size: 0.8rem; color: var(--text-muted); text-align: center; margin: 4px 0 15px;">Program Ekstrakurikuler Sekolah (Min. 5 Siswa)</p>
+                    <div style="color: #10B981; font-size: 2.2rem; font-weight: 800; line-height: 1; text-align: center;">Rp 1JT</div>
+                    <p style="font-size: 0.8rem; color: var(--text-muted); text-align: center; margin: 5px 0 20px;">16 Pertemuan (4 Bulan)</p>
+                    <div style="background: #ECFDF5; border-radius: 12px; padding: 15px; margin-bottom: 20px;">
+                        <div style="font-size: 0.85rem; font-weight: 700; color: #065F46; margin-bottom: 8px;"><i class="fa-solid fa-wallet"></i> Opsi Cicilan:</div>
+                        <ul style="font-size: 0.75rem; color: #059669; margin: 0; padding-left: 16px; line-height: 1.5;"><li>Cicilan Bulanan</li><li>Cicilan dengan pilihan Skema Pembayaran</li></ul>
+                    </div>
+                    <ul style="font-size: 0.85rem; color: var(--text-dark); margin: 0 0 25px 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 10px;">
+                        <li><i class="fa-solid fa-check" style="color: #10B981; margin-right: 8px;"></i> 16 Pertemuan (4 Bulan)</li>
+                        <li><i class="fa-solid fa-check" style="color: #10B981; margin-right: 8px;"></i> Materi Lengkap</li>
+                    </ul>
+                    <div style="flex-grow: 1;"></div>
+                    <a href="https://api.whatsapp.com/send?phone=6285795899901&text=Halo%20kak%2C%20Saya%20tertarik%20ikut%20kursus%20Coding%20Jr%20Paket%20Ekstrakurikuler!" target="_blank" style="display: block; background: #10B981; color: #FFFFFF; text-align: center; padding: 12px; border-radius: 12px; font-weight: 600; font-size: 0.9rem; text-decoration: none; transition: background 0.3s ease;" onmouseover="this.style.background='#059669'" onmouseout="this.style.background='#10B981'">Daftar Paket Ekskul</a>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Section Dokumentasi Pembelajaran -->
+    <section class="section light-bg reveal-on-scroll">
+        <div class="container">
+            <div class="section-header" style="margin-bottom: 40px; text-align: center;">
+                <h2 style="font-size: 2.2rem; color: var(--primary-navy);"><i class="fa-solid fa-camera-retro" style="color: var(--accent-blue);"></i> Dokumentasi <span class="text-gradient">Pembelajaran</span></h2>
+                <p style="color: var(--text-muted); font-size: 1rem; max-width: 700px; margin: 10px auto;">Lihat momen berharga saat anak-anak belajar, bereksperimen, dan berkreasi dalam kelas robotik kami. Setiap sesi penuh keceriaan dan pencapaian!</p>
+            </div>
+            <div class="grid grid-3" style="gap: 30px;">
+                <div style="border-radius: 24px; overflow: hidden; box-shadow: var(--shadow-md); transition: transform 0.3s ease; aspect-ratio: 3/4; background-color: #E2E8F0; position: relative;" onmouseover="this.style.transform='scale(1.03)'" onmouseout="this.style.transform='scale(1)'">
+                    <div style="position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; color: #94A3B8; font-weight: 600; font-size: 1.1rem; z-index: 1;">Masukkan Foto 1 Di Sini</div>
+                    <img src="../images/cjr/cjr.jpg" alt="Dokumentasi 1" style="width: 100%; height: 100%; object-fit: cover; display: block; position: relative; z-index: 2;">
+                </div>
+                <div style="border-radius: 24px; overflow: hidden; box-shadow: var(--shadow-md); transition: transform 0.3s ease; aspect-ratio: 3/4; background-color: #E2E8F0; position: relative;" onmouseover="this.style.transform='scale(1.03)'" onmouseout="this.style.transform='scale(1)'">
+                    <div style="position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; color: #94A3B8; font-weight: 600; font-size: 1.1rem; z-index: 1;">Masukkan Foto 2 Di Sini</div>
+                    <img src="../images/cjr/cjr2.jpg" alt="Dokumentasi 2" style="width: 100%; height: 100%; object-fit: cover; display: block; position: relative; z-index: 2;">
+                </div>
+                <div style="border-radius: 24px; overflow: hidden; box-shadow: var(--shadow-md); transition: transform 0.3s ease; aspect-ratio: 3/4; background-color: #E2E8F0; position: relative;" onmouseover="this.style.transform='scale(1.03)'" onmouseout="this.style.transform='scale(1)'">
+                    <div style="position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; color: #94A3B8; font-weight: 600; font-size: 1.1rem; z-index: 1;">Masukkan Foto 3 Di Sini</div>
+                    <img src="../images/cjr/cjr3.jpg" alt="Dokumentasi 3" style="width: 100%; height: 100%; object-fit: cover; display: block; position: relative; z-index: 2;">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Script Akordion & Animasi Scroll -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // 1. Logika Accordion Materi
+            const accordionHeaders = document.querySelectorAll('.accordion-header');
+            accordionHeaders.forEach(header => {
+                header.addEventListener('click', () => {
+                    const item = header.parentElement;
+                    const content = header.nextElementSibling;
+                    item.classList.toggle('active');
+                    if (item.classList.contains('active')) {
+                        content.style.maxHeight = content.scrollHeight + "px";
+                    } else {
+                        content.style.maxHeight = null;
+                    }
+                });
+            });
+
+            // 2. Logika Animasi Scroll ke Bawah (Fade-In Effect)
+            const revealElements = document.querySelectorAll('.reveal-on-scroll');
+            const revealOnScroll = () => {
+                revealElements.forEach(element => {
+                    const elementTop = element.getBoundingClientRect().top;
+                    const windowHeight = window.innerHeight - 100;
+                    if (elementTop < windowHeight) {
+                        element.classList.add('active');
+                    }
+                });
+            };
+
+            window.addEventListener('scroll', revealOnScroll);
+            revealOnScroll(); // Jalankan sekali saat dimuat
+        });
+    </script>
+</body>
+<!-- FOOTER / KONTAK SECTION (MODERN STYLE) -->
+    <footer class="modern-footer reveal-on-scroll" id="kontak">
+        <div class="footer-container">
+            <div class="footer-grid">
+                <!-- Brand & Tagline -->
+                <div class="footer-col brand-col">
+                    <div class="brand-wrapper">
+                        <h3 class="footer-logo"><img src="../images/logo.webp" alt=""></h3>
+                    </div>
+                    <p class="footer-desc">Mengembangkan potensi dan kreativitas anak melalui edukasi teknologi robotik & coding terstruktur.</p>
+                    <a href="https://sukarobot.id/daftar" target="_blank" class="btn-footer-cta">
+                        Yuk daftarkan anak Anda sekarang! <i class="fa-solid fa-arrow-right"></i>
+                    </a>
+                </div>
+
+                <!-- Kontak Informasi -->
+                <div class="footer-col">
+                    <h4 class="footer-title">
+                        <span class="title-icon"><i class="fa-solid fa-headset"></i></span> Kontak Us
+                    </h4>
+                    <div class="contact-cards-wrapper">
+                        <a href="https://wa.me/6285795899901" target="_blank" class="contact-item-card">
+                            <div class="c-icon-box"><i class="fa-solid fa-phone"></i></div>
+                            <div>
+                                <span class="c-label">WhatsApp Admin</span>
+                                <span class="c-value">085795899901</span>
+                            </div>
+                        </a>
+
+                        <a href="mailto:sukarobotacademy@gmail.com" class="contact-item-card">
+                            <div class="c-icon-box"><i class="fa-solid fa-envelope"></i></div>
+                            <div>
+                                <span class="c-label">Email Support</span>
+                                <span class="c-value">sukarobotacademy@gmail.com</span>
+                            </div>
+                        </a>
+
+                        <div class="contact-item-card">
+                            <div class="c-icon-box"><i class="fa-solid fa-location-dot"></i></div>
+                            <div>
+                                <span class="c-label">Alamat Utama</span>
+                                <span class="c-value">Jl A.Yani No. 283 Cikole, Sukabumi</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Media Sosial -->
+                <div class="footer-col">
+                    <h4 class="footer-title">
+                        <span class="title-icon"><i class="fa-solid fa-share-nodes"></i></span> Ikuti Kami
+                    </h4>
+                    <div class="social-cards-wrapper">
+                        <a href="https://instagram.com/sukarobot.academy" target="_blank" class="social-pill instagram">
+                            <i class="fa-brands fa-instagram"></i>
+                            <span>@sukarobot.academy</span>
+                        </a>
+                        <a href="https://facebook.com/sukarobot" target="_blank" class="social-pill facebook">
+                            <i class="fa-brands fa-facebook-f"></i>
+                            <span>sukarobot</span>
+                        </a>
+                        <a href="https://tiktok.com/@sukarobotacademy" target="_blank" class="social-pill tiktok">
+                            <i class="fa-brands fa-tiktok"></i>
+                            <span>@sukarobotacademy</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Copyright -->
+            <div class="footer-bottom">
+                <p>&copy; 2026 <strong>Sukarobot Academy</strong>. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+</html>
