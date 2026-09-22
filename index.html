@@ -1,519 +1,620 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="id">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="google" content="notranslate">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="google" content="notranslate" />
     <title>Sukarobot Academy - Belajar Coding & Robotik</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    <link rel="stylesheet" href="css/style.css" />
     <script src="https://cdn.tailwindcss.com"></script>
-</head>
-<body>
-
+    <style>
+      /* ====== Dropdown Brosur (tambahan) ====== */
+      .brosur-dropdown {
+        position: relative;
+        display: inline-block;
+      }
+      .brosur-dropdown .btn-success {
+        cursor: pointer;
+      }
+      .brosur-toggle-icon {
+        margin-left: 8px;
+        font-size: 0.7rem;
+        transition: transform 0.2s ease;
+      }
+      .brosur-dropdown.active .brosur-toggle-icon {
+        transform: rotate(180deg);
+      }
+      .brosur-menu {
+        position: absolute;
+        /* Dibuka ke ATAS: menempel di atas tombol, bukan di bawahnya */
+        bottom: calc(100% + 10px);
+        left: 0;
+        min-width: 250px;
+        max-width: calc(100vw - 32px);
+        background: #ffffff;
+        border-radius: 14px;
+        box-shadow: 0 12px 32px rgba(0, 0, 0, 0.16);
+        padding: 8px;
+        opacity: 0;
+        visibility: hidden;
+        /* Animasi meluncur naik menuju posisi akhir */
+        transform: translateY(8px);
+        transition:
+          opacity 0.2s ease,
+          transform 0.2s ease,
+          visibility 0.2s ease;
+        z-index: 999;
+      }
+      .brosur-dropdown.active .brosur-menu {
+        opacity: 1;
+        visibility: visible;
+        transform: translateY(0);
+      }
+      .brosur-menu a {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        padding: 11px 14px;
+        border-radius: 9px;
+        color: #1e293b;
+        font-size: 0.95rem;
+        font-weight: 500;
+        text-decoration: none;
+        transition:
+          background 0.15s ease,
+          color 0.15s ease;
+      }
+      .brosur-menu a:hover {
+        background: #f0fdf4;
+        color: #15803d;
+      }
+      .brosur-menu a i {
+        color: #16a34a;
+        font-size: 0.9rem;
+        width: 16px;
+        text-align: center;
+      }
+    </style>
+  </head>
+  <body>
     <!-- Header / Navbar -->
     <header class="navbar-container" id="navbar">
-        <nav class="navbar">
-            <a href="#home" class="logo">
-                <img src="images/logo.webp" alt="">
-            </a>
-            
-            <ul class="nav-links" id="nav-links">
-                <li><a href="#keunggulan" class="nav-link">Tentang</a></li>
-                <li><a href="#program" class="nav-link">Program</a></li>
-                <li><a href="#kelas" class="nav-link">Kelas</a></li>
-                <li><a href="#kontak" class="nav-link">Kontak</a></li>
-                <!-- Tombol CTA Mobile -->
-                <li class="mobile-cta" style="margin-bottom: 10px;">
-                    <a href="https://sukarobot.id/DaftarTrial" target="_blank" class="btn btn-orange" style="animation: none;">Daftar Uji Coba</a>
-                </li>
-                <li class="mobile-cta">
-                    <a href="https://sukarobot.id/daftar" target="_blank" class="btn btn-primary open-register-btn">Daftar</a>
-                </li>
-            </ul>
+      <nav class="navbar">
+        <a href="#home" class="logo">
+          <img src="images/logo.webp" alt="" />
+        </a>
 
-            <!-- Tambahkan style inline (display: flex; gap: 12px;) agar kedua tombol rapi berdampingan -->
-            <div class="nav-actions" style="display: flex; gap: 12px; align-items: center;">
-                <a href="https://sukarobot.id/DaftarTrial" target="_blank" class="btn btn-orange desktop-cta" style="animation: none; padding: 10px 20px;">Daftar Uji Coba</a>
-                <a href="https://sukarobot.id/daftar" target="_blank" class="btn btn-primary desktop-cta open-register-btn">Daftar</a>
-                <button class="hamburger" id="hamburger" aria-label="Toggle Navigation">
-                    <i class="fas fa-bars"></i>
-                </button>
-            </div>
-        </nav>
+        <ul class="nav-links" id="nav-links">
+          <li><a href="#keunggulan" class="nav-link">Tentang</a></li>
+          <li><a href="#program" class="nav-link">Program</a></li>
+          <li><a href="#kelas" class="nav-link">Kelas</a></li>
+          <li><a href="#kontak" class="nav-link">Kontak</a></li>
+          <!-- Tombol CTA Mobile -->
+          <li class="mobile-cta" style="margin-bottom: 10px">
+            <a href="https://sukarobot.id/DaftarTrial" target="_blank" class="btn btn-orange" style="animation: none">Daftar Uji Coba</a>
+          </li>
+          <li class="mobile-cta">
+            <a href="https://sukarobot.id/daftar" target="_blank" class="btn btn-primary open-register-btn">Daftar</a>
+          </li>
+        </ul>
+
+        <!-- Tambahkan style inline (display: flex; gap: 12px;) agar kedua tombol rapi berdampingan -->
+        <div class="nav-actions" style="display: flex; gap: 12px; align-items: center">
+          <a href="https://sukarobot.id/DaftarTrial" target="_blank" class="btn btn-orange desktop-cta" style="animation: none; padding: 10px 20px">Daftar Uji Coba</a>
+          <a href="https://sukarobot.id/daftar" target="_blank" class="btn btn-primary desktop-cta open-register-btn">Daftar</a>
+          <button class="hamburger" id="hamburger" aria-label="Toggle Navigation">
+            <i class="fas fa-bars"></i>
+          </button>
+        </div>
+      </nav>
     </header>
 
     <!-- Hero / Home Section -->
     <section class="hero" id="home">
-        <div class="hero-bg-decor">
-            <div class="floating-shape shape-1"></div>
-            <div class="floating-shape shape-2"></div>
-            <div class="grid-pattern"></div>
-        </div>
-        
-        <div class="container hero-container">
-            <div class="hero-content">
-                <span class="badge badge-hero"><i class="fas fa-rocket"></i> Sukarobot Academy</span>
-                <h1 class="hero-title">
-                    <b>Belajar, <br>
-                    <span class="text-gradient">Berinovasi,</span> <br>
-                    Berprestasi</b>
-                </h1>
-                <p class="hero-subtitle">
-                    Sukarobot Academy membantu anak-anak mengembangkan kreativitas, logika, dan prestasi melalui teknologi.
-                </p>
-                <div class="hero-buttons">
-                    <!-- Tambahkan target="_blank" -->
-                    <a href="https://sukarobot.id/DaftarTrial" class="btn btn-orange open-register-btn" target="_blank">Daftar Uji Coba</a>
-                    <a href="https://sukarobot.id/daftar" class="btn btn-primary open-register-btn" target="_blank">Daftar</a>
-                    <a href="https://drive.google.com/file/d/1_UMkFA9TOZbzaN1dIuJvefnrCQ7x9KYY/view" class="btn btn-success" target="_blank"><i class="far fa-file-alt"></i> Lihat Brosur</a>
-                </div>
-            </div>
+      <div class="hero-bg-decor">
+        <div class="floating-shape shape-1"></div>
+        <div class="floating-shape shape-2"></div>
+        <div class="grid-pattern"></div>
+      </div>
 
-            <div class="hero-visual">
-                <div class="robot-stage">
-                    <div class="robot-avatar">
-                        <div class="robot-antenna"></div>
-                        <div class="robot-head">
-                            <div class="robot-eyes">
-                                <div class="eye"></div>
-                                <div class="eye"></div>
-                            </div>
-                            <div class="robot-mouth"></div>
-                        </div>
-                        <div class="robot-body">
-                            <div class="robot-screen">
-                                <span class="code-symbol">&lt;/&gt;</span>
-                            </div>
-                        </div>
-                        <div class="robot-hands">
-                            <div class="hand left"></div>
-                            <div class="hand right"></div>
-                        </div>
-                    </div>
-                    <div class="circuit-spark spark-1"><i class="fas fa-bolt"></i></div>
-                    <div class="circuit-spark spark-2"><i class="fas fa-code"></i></div>
-                    <div class="circuit-spark spark-3"><i class="fas fa-cog"></i></div>
-                </div>
+      <div class="container hero-container">
+        <div class="hero-content">
+          <span class="badge badge-hero"><i class="fas fa-rocket"></i> Sukarobot Academy</span>
+          <h1 class="hero-title">
+            <b
+              >Belajar, <br />
+              <span class="text-gradient">Berinovasi,</span> <br />
+              Berprestasi</b
+            >
+          </h1>
+          <p class="hero-subtitle">Sukarobot Academy membantu anak-anak mengembangkan kreativitas, logika, dan prestasi melalui teknologi.</p>
+          <div class="hero-buttons">
+            <!-- Tambahkan target="_blank" -->
+            <a href="https://sukarobot.id/DaftarTrial" class="btn btn-orange open-register-btn" target="_blank">Daftar Uji Coba</a>
+            <a href="https://sukarobot.id/daftar" class="btn btn-primary open-register-btn" target="_blank">Daftar</a>
+
+            <!-- penambahan dropdown pada tombol browsur -->
+            <div class="brosur-dropdown" id="brosurDropdown">
+              <button type="button" class="btn btn-success" onclick="toggleBrosurDropdown(event)" aria-haspopup="true" aria-expanded="false">
+                <i class="far fa-file-alt"></i> Pilih Brosur <i class="fas fa-chevron-up brosur-toggle-icon"></i>
+              </button>
+              <div class="brosur-menu">
+                <a href="https://drive.google.com/file/d/1_UMkFA9TOZbzaN1dIuJvefnrCQ7x9KYY/view" target="_blank"> <i class="fas fa-location-dot"></i> Brosur Cabang Sukabumi </a>
+                <a href="GANTI_LINK_GDRIVE_BOGOR" target="_blank"> <i class="fas fa-location-dot"></i> Brosur Cabang Bogor </a>
+                <a href="GANTI_LINK_GDRIVE_TASIK" target="_blank"> <i class="fas fa-location-dot"></i> Brosur Cabang Tasik </a>
+              </div>
             </div>
+          </div>
         </div>
+
+        <div class="hero-visual">
+          <div class="robot-stage">
+            <div class="robot-avatar">
+              <div class="robot-antenna"></div>
+              <div class="robot-head">
+                <div class="robot-eyes">
+                  <div class="eye"></div>
+                  <div class="eye"></div>
+                </div>
+                <div class="robot-mouth"></div>
+              </div>
+              <div class="robot-body">
+                <div class="robot-screen">
+                  <span class="code-symbol">&lt;/&gt;</span>
+                </div>
+              </div>
+              <div class="robot-hands">
+                <div class="hand left"></div>
+                <div class="hand right"></div>
+              </div>
+            </div>
+            <div class="circuit-spark spark-1"><i class="fas fa-bolt"></i></div>
+            <div class="circuit-spark spark-2"><i class="fas fa-code"></i></div>
+            <div class="circuit-spark spark-3"><i class="fas fa-cog"></i></div>
+          </div>
+        </div>
+      </div>
     </section>
 
     <!-- Section Tentang Sukarobot Academy -->
     <section class="section about-section" id="keunggulan">
-        <div class="container">
-            <div class="section-header">
-                <span class="section-tag">Tentang Kami</span>
-                <h2>Tentang <span class="text-gradient">Sukarobot Academy</span></h2>
-                <p>Lembaga kursus dan pelatihan robotik terdepan yang mengembangkan potensi anak melalui pembelajaran STEAM yang menyenangkan.</p>
-            </div>
-
-            <!-- Row 1: 3 Column Feature Cards -->
-            <div class="grid grid-3 about-top-grid">
-                <div class="card card-feature">
-                    <div class="feature-icon bg-purple"><i class="fas fa-certificate"></i></div>
-                    <h3>Pengajar Tersertifikasi</h3>
-                    <p>Instruktur berpengalaman dan tersertifikasi dalam bidang robotik dan coding.</p>
-                </div>
-
-                <div class="card card-feature">
-                    <div class="feature-icon bg-blue"><i class="fas fa-atom"></i></div>
-                    <h3>Kurikulum STEAM</h3>
-                    <p>Pembelajaran terintegrasi Science, Technology, Engineering, Arts, dan Mathematics.</p>
-                </div>
-
-                <div class="card card-feature">
-                    <div class="feature-icon bg-orange"><i class="fas fa-gamepad"></i></div>
-                    <h3>Fun Learning</h3>
-                    <p>Metode pembelajaran yang menyenangkan dan interaktif untuk semua usia.</p>
-                </div>
-            </div>
-
-            <!-- Row 2: 2 Column Info Cards -->
-            <div class="grid grid-2 about-bottom-grid">
-                <div class="card card-about-info">
-                    <div class="about-card-content">
-                        <div class="about-card-header">
-                            <span class="about-icon bg-cyan"><i class="fas fa-bullseye"></i></span>
-                            <h3>Target Peserta</h3>
-                        </div>
-                        <ul class="about-list">
-                            <li><i class="fas fa-check-circle"></i> TK / RA</li>
-                            <li><i class="fas fa-check-circle"></i> SD / MI – SMP / MTs</li>
-                            <li><i class="fas fa-check-circle"></i> SMA / MA / SMK</li>
-                            <li><i class="fas fa-check-circle"></i> Mahasiswa & Umum</li>
-                        </ul>
-                    </div>
-                    <div class="about-card-illustration">
-                        <div class="target-badge-graphic">
-                            <i class="fas fa-bullseye"></i>
-                        </div>
-                    </div>
-                </div>
-<div class="card card-about-info">
-    <div class="about-card-content">
-        <!-- Header Kartu dengan Ikon Emoji Sparkle -->
-        <div class="about-card-header" style="display: flex; align-items: center; margin-bottom: 20px;">
-            <h3 style="margin: 0; display: flex; align-items: center; gap: 10px; color: var(--primary-navy); font-size: 1.3rem;">
-                <i class="fa-solid fa-wand-magic-sparkles" style="color: #FACC15;"></i>
-                Manfaat Belajar Robotik
-            </h3>
+      <div class="container">
+        <div class="section-header">
+          <span class="section-tag">Tentang Kami</span>
+          <h2>Tentang <span class="text-gradient">Sukarobot Academy</span></h2>
+          <p>Lembaga kursus dan pelatihan robotik terdepan yang mengembangkan potensi anak melalui pembelajaran STEAM yang menyenangkan.</p>
         </div>
-        
-        <!-- List Manfaat -->
-        <ul class="about-list">
-            <li><i class="fas fa-check-circle"></i> Berpikir kreatif</li>
-            <li><i class="fas fa-check-circle"></i> Mengasah inovasi & imajinasi</li>
-            <li><i class="fas fa-check-circle"></i> Mengasah keterampilan coding</li>
-            <li><i class="fas fa-check-circle"></i> Belajar memecahkan masalah</li>
-            <li><i class="fas fa-check-circle"></i> Keterampilan masa depan</li>
-        </ul>
-    </div>
-</div>
-            </div>
+
+        <!-- Row 1: 3 Column Feature Cards -->
+        <div class="grid grid-3 about-top-grid">
+          <div class="card card-feature">
+            <div class="feature-icon bg-purple"><i class="fas fa-certificate"></i></div>
+            <h3>Pengajar Tersertifikasi</h3>
+            <p>Instruktur berpengalaman dan tersertifikasi dalam bidang robotik dan coding.</p>
+          </div>
+
+          <div class="card card-feature">
+            <div class="feature-icon bg-blue"><i class="fas fa-atom"></i></div>
+            <h3>Kurikulum STEAM</h3>
+            <p>Pembelajaran terintegrasi Science, Technology, Engineering, Arts, dan Mathematics.</p>
+          </div>
+
+          <div class="card card-feature">
+            <div class="feature-icon bg-orange"><i class="fas fa-gamepad"></i></div>
+            <h3>Fun Learning</h3>
+            <p>Metode pembelajaran yang menyenangkan dan interaktif untuk semua usia.</p>
+          </div>
         </div>
+
+        <!-- Row 2: 2 Column Info Cards -->
+        <div class="grid grid-2 about-bottom-grid">
+          <div class="card card-about-info">
+            <div class="about-card-content">
+              <div class="about-card-header">
+                <span class="about-icon bg-cyan"><i class="fas fa-bullseye"></i></span>
+                <h3>Target Peserta</h3>
+              </div>
+              <ul class="about-list">
+                <li><i class="fas fa-check-circle"></i> TK / RA</li>
+                <li><i class="fas fa-check-circle"></i> SD / MI – SMP / MTs</li>
+                <li><i class="fas fa-check-circle"></i> SMA / MA / SMK</li>
+                <li><i class="fas fa-check-circle"></i> Mahasiswa & Umum</li>
+              </ul>
+            </div>
+            <div class="about-card-illustration">
+              <div class="target-badge-graphic">
+                <i class="fas fa-bullseye"></i>
+              </div>
+            </div>
+          </div>
+          <div class="card card-about-info">
+            <div class="about-card-content">
+              <!-- Header Kartu dengan Ikon Emoji Sparkle -->
+              <div class="about-card-header" style="display: flex; align-items: center; margin-bottom: 20px">
+                <h3 style="margin: 0; display: flex; align-items: center; gap: 10px; color: var(--primary-navy); font-size: 1.3rem">
+                  <i class="fa-solid fa-wand-magic-sparkles" style="color: #facc15"></i>
+                  Manfaat Belajar Robotik
+                </h3>
+              </div>
+
+              <!-- List Manfaat -->
+              <ul class="about-list">
+                <li><i class="fas fa-check-circle"></i> Berpikir kreatif</li>
+                <li><i class="fas fa-check-circle"></i> Mengasah inovasi & imajinasi</li>
+                <li><i class="fas fa-check-circle"></i> Mengasah keterampilan coding</li>
+                <li><i class="fas fa-check-circle"></i> Belajar memecahkan masalah</li>
+                <li><i class="fas fa-check-circle"></i> Keterampilan masa depan</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
     </section>
 
     <!-- Section Program Pembelajaran -->
-<section class="section program-section" id="program">
-    <div class="container">
+    <section class="section program-section" id="program">
+      <div class="container">
         <div class="section-header">
-            <span class="section-tag">Katalog Kelas</span>
-            <h2>Program <span class="text-gradient">Pembelajaran</span></h2>
-            <p>Program pembelajaran terstruktur sesuai usia dan kemampuan</p>
+          <span class="section-tag">Katalog Kelas</span>
+          <h2>Program <span class="text-gradient">Pembelajaran</span></h2>
+          <p>Program pembelajaran terstruktur sesuai usia dan kemampuan</p>
         </div>
 
         <!-- Search & Filter Area -->
         <div class="program-filter-container">
-            <div class="search-box-wrapper">
-                <i class="fas fa-search search-icon"></i>
-                <input type="text" id="program-search" placeholder="Cari kelas yang kamu inginkan (cth: Robot, Scratch, Web)..." autocomplete="off">
-            </div>
+          <div class="search-box-wrapper">
+            <i class="fas fa-search search-icon"></i>
+            <input type="text" id="program-search" placeholder="Cari kelas yang kamu inginkan (cth: Robot, Scratch, Web)..." autocomplete="off" />
+          </div>
 
-            <div class="filter-buttons">
-                <button class="filter-btn active" data-filter="all">Semua</button>
-                <button class="filter-btn" data-filter="robotik">Robotik</button>
-                <button class="filter-btn" data-filter="coding">Coding</button>
-                <button class="filter-btn" data-filter="desain">Desain</button>
-                <button class="filter-btn" data-filter="programming">Programming</button>
-                <button class="filter-btn" data-filter="office">MS. Office</button>
-                <button class="filter-btn" data-filter="marketing">Digital Marketing</button>
-            </div>
+          <div class="filter-buttons">
+            <button class="filter-btn active" data-filter="all">Semua</button>
+            <button class="filter-btn" data-filter="robotik">Robotik</button>
+            <button class="filter-btn" data-filter="coding">Coding</button>
+            <button class="filter-btn" data-filter="desain">Desain</button>
+            <button class="filter-btn" data-filter="programming">Programming</button>
+            <button class="filter-btn" data-filter="office">MS. Office</button>
+            <button class="filter-btn" data-filter="marketing">Digital Marketing</button>
+          </div>
         </div>
 
         <!-- Program Grid Container -->
         <div class="grid grid-3 program-grid" id="program-cards-container">
-            <!-- Data dikirim otomatis via script.js -->
+          <!-- Data dikirim otomatis via script.js -->
         </div>
-    </div>
-</section>
+      </div>
+    </section>
 
-<!-- SECTION: SISTEM PEMBELAJARAN -->
-<section class="info-section light-bg">
-    <div class="container">
+    <!-- SECTION: SISTEM PEMBELAJARAN -->
+    <section class="info-section light-bg">
+      <div class="container">
         <h2 class="section-title">
-            <span class="title-icon-box box-blue"><i class="fa-solid fa-clipboard-list"></i></span>
-            Sistem Pembelajaran
+          <span class="title-icon-box box-blue"><i class="fa-solid fa-clipboard-list"></i></span>
+          Sistem Pembelajaran
         </h2>
         <div class="info-grid-4">
-            <div class="info-card">
-                <div class="icon-box box-purple"><i class="fa-regular fa-clock"></i></div>
-                <h4>Durasi</h4>
-                <p>90 Menit</p>
-            </div>
-            <div class="info-card">
-                <div class="icon-box box-blue"><i class="fa-regular fa-calendar-days"></i></div>
-                <h4>Pertemuan</h4>
-                <p>16 & 24 Pertemuan/Level</p>
-            </div>
-            <div class="info-card">
-                <div class="icon-box box-green"><i class="fa-solid fa-gift"></i></div>
-                <h4>Pendaftaran</h4>
-                <p class="highlight-text">GRATIS</p>
-            </div>
-            <div class="info-card">
-                <div class="icon-box box-orange"><i class="fa-solid fa-money-bill-wave"></i></div>
-                <h4>Biaya Bulanan</h4>
-                <p>250K - 450K</p>
-            </div>
+          <div class="info-card">
+            <div class="icon-box box-purple"><i class="fa-regular fa-clock"></i></div>
+            <h4>Durasi</h4>
+            <p>90 Menit</p>
+          </div>
+          <div class="info-card">
+            <div class="icon-box box-blue"><i class="fa-regular fa-calendar-days"></i></div>
+            <h4>Pertemuan</h4>
+            <p>16 & 24 Pertemuan/Level</p>
+          </div>
+          <div class="info-card">
+            <div class="icon-box box-green"><i class="fa-solid fa-gift"></i></div>
+            <h4>Pendaftaran</h4>
+            <p class="highlight-text">GRATIS</p>
+          </div>
+          <div class="info-card">
+            <div class="icon-box box-orange"><i class="fa-solid fa-money-bill-wave"></i></div>
+            <h4>Biaya Bulanan</h4>
+            <p>250K - 450K</p>
+          </div>
         </div>
-    </div>
-</section>
+      </div>
+    </section>
 
-<!-- SECTION: FASILITAS -->
-<section class="facilities-section">
-    <div class="container">
+    <!-- SECTION: FASILITAS -->
+    <section class="facilities-section">
+      <div class="container">
         <h2 class="section-title">
-            <span class="title-icon-box box-orange"><i class="fa-solid fa-box-open"></i></span>
-            Fasilitas
+          <span class="title-icon-box box-orange"><i class="fa-solid fa-box-open"></i></span>
+          Fasilitas
         </h2>
         <div class="facilities-list">
-            <div class="facility-item"><i class="fa-solid fa-book"></i> Modul Pembelajaran</div>
-            <div class="facility-item"><i class="fa-solid fa-shirt"></i> Kaos Robotik</div>
-            <div class="facility-item"><i class="fa-solid fa-chart-simple"></i> Raport Semester</div>
-            <div class="facility-item"><i class="fa-solid fa-award"></i> Sertifikasi Kelulusan</div>
-            <div class="facility-item"><i class="fa-solid fa-mobile-screen-button"></i> Aplikasi Monitoring</div>
-            <div class="facility-item"><i class="fa-solid fa-robot"></i> Kit Robotik Dipinjamkan</div>
-            <div class="facility-item"><i class="fa-solid fa-laptop"></i> Laptop Dipinjamkan</div>
+          <div class="facility-item"><i class="fa-solid fa-book"></i> Modul Pembelajaran</div>
+          <div class="facility-item"><i class="fa-solid fa-shirt"></i> Kaos Robotik</div>
+          <div class="facility-item"><i class="fa-solid fa-chart-simple"></i> Raport Semester</div>
+          <div class="facility-item"><i class="fa-solid fa-award"></i> Sertifikasi Kelulusan</div>
+          <div class="facility-item"><i class="fa-solid fa-mobile-screen-button"></i> Aplikasi Monitoring</div>
+          <div class="facility-item"><i class="fa-solid fa-robot"></i> Kit Robotik Dipinjamkan</div>
+          <div class="facility-item"><i class="fa-solid fa-laptop"></i> Laptop Dipinjamkan</div>
         </div>
-    </div>
-</section>
+      </div>
+    </section>
 
-<!-- SECTION: KELAS PEMBELAJARAN -->
-<section class="classes-section light-bg" id="kelas">
-    <div class="container">
+    <!-- SECTION: KELAS PEMBELAJARAN -->
+    <section class="classes-section light-bg" id="kelas">
+      <div class="container">
         <div class="section-header center">
-            <h2 class="section-title">Kelas Pembelajaran</h2>
-            <p class="section-subtitle">Berbagai pilihan kelas dan kegiatan menarik</p>
+          <h2 class="section-title">Kelas Pembelajaran</h2>
+          <p class="section-subtitle">Berbagai pilihan kelas dan kegiatan menarik</p>
         </div>
 
         <div class="promo-banner">
-            <div class="icon-box box-green"><i class="fa-solid fa-bullhorn"></i></div>
-            <div>
-                <h3>Pendaftaran GRATIS!</h3>
-                <p>Tidak ada biaya pendaftaran untuk semua program</p>
-            </div>
+          <div class="icon-box box-green"><i class="fa-solid fa-bullhorn"></i></div>
+          <div>
+            <h3>Pendaftaran GRATIS!</h3>
+            <p>Tidak ada biaya pendaftaran untuk semua program</p>
+          </div>
         </div>
 
         <div class="class-grid-4">
-            <div class="class-card card-blue">
-                <div class="icon-box box-blue"><i class="fa-solid fa-school"></i></div>
-                <h3>Ekstrakurikuler Sekolah</h3>
-                <p class="class-desc">3-5 orang per kelas<br><small>1 pengajar untuk setiap kelas</small></p>
-                <div class="price-box">
-                    <span>Biaya Cicilan Mulai Dari</span>
-                    <h4 class="price">Rp 250.000</h4>
-                    <p class="price-note">Jadwal mengikuti sekolah dan sukarobot</p>
-                </div>
+          <div class="class-card card-blue">
+            <div class="icon-box box-blue"><i class="fa-solid fa-school"></i></div>
+            <h3>Ekstrakurikuler Sekolah</h3>
+            <p class="class-desc">3-5 orang per kelas<br /><small>1 pengajar untuk setiap kelas</small></p>
+            <div class="price-box">
+              <span>Biaya Cicilan Mulai Dari</span>
+              <h4 class="price">Rp 250.000</h4>
+              <p class="price-note">Jadwal mengikuti sekolah dan sukarobot</p>
             </div>
+          </div>
 
-            <div class="class-card card-orange">
-                <div class="icon-box box-orange"><i class="fa-solid fa-users"></i></div>
-                <h3>Kelas Reguler</h3>
-                <p class="class-desc">3-5 orang per kelas<br><small>1 pengajar untuk setiap kelas</small></p>
-                <div class="price-box">
-                    <span>Biaya Cicilan Mulai Dari</span>
-                    <h4 class="price">Rp 250.000</h4>
-                    <p class="price-note">Jadwal didiskusikan dengan teman lainnya dan sukarobot</p>
-                </div>
+          <div class="class-card card-orange">
+            <div class="icon-box box-orange"><i class="fa-solid fa-users"></i></div>
+            <h3>Kelas Reguler</h3>
+            <p class="class-desc">3-5 orang per kelas<br /><small>1 pengajar untuk setiap kelas</small></p>
+            <div class="price-box">
+              <span>Biaya Cicilan Mulai Dari</span>
+              <h4 class="price">Rp 250.000</h4>
+              <p class="price-note">Jadwal didiskusikan dengan teman lainnya dan sukarobot</p>
             </div>
+          </div>
 
-            <div class="class-card card-teal">
-                <div class="icon-box box-teal"><i class="fa-solid fa-user-group"></i></div>
-                <h3>Semi Private</h3>
-                <p class="class-desc">2 orang per kelas<br><small>1 pengajar untuk setiap kelas</small></p>
-                <div class="price-box">
-                    <span>Biaya Cicilan Mulai Dari</span>
-                    <h4 class="price">Rp 350.000</h4>
-                    <p class="price-note">Jadwal didiskusikan dengan teman lainnya dan sukarobot</p>
-                </div>
+          <div class="class-card card-teal">
+            <div class="icon-box box-teal"><i class="fa-solid fa-user-group"></i></div>
+            <h3>Semi Private</h3>
+            <p class="class-desc">2 orang per kelas<br /><small>1 pengajar untuk setiap kelas</small></p>
+            <div class="price-box">
+              <span>Biaya Cicilan Mulai Dari</span>
+              <h4 class="price">Rp 350.000</h4>
+              <p class="price-note">Jadwal didiskusikan dengan teman lainnya dan sukarobot</p>
             </div>
+          </div>
 
-            <div class="class-card card-purple">
-                <div class="icon-box box-purple"><i class="fa-solid fa-user-large"></i></div>
-                <h3>Private</h3>
-                <p class="class-desc">1 orang per kelas<br><small>1 pengajar khusus</small></p>
-                <div class="price-box">
-                    <span>Biaya Cicilan Mulai Dari</span>
-                    <h4 class="price">Rp 450.000</h4>
-                    <p class="price-note">Jadwal fleksibel dan diskusi dengan sukarobot</p>
-                </div>
+          <div class="class-card card-purple">
+            <div class="icon-box box-purple"><i class="fa-solid fa-user-large"></i></div>
+            <h3>Private</h3>
+            <p class="class-desc">1 orang per kelas<br /><small>1 pengajar khusus</small></p>
+            <div class="price-box">
+              <span>Biaya Cicilan Mulai Dari</span>
+              <h4 class="price">Rp 450.000</h4>
+              <p class="price-note">Jadwal fleksibel dan diskusi dengan sukarobot</p>
             </div>
+          </div>
         </div>
 
         <div class="private-home-card">
-            <div class="icon-box box-purple center-box"><i class="fa-solid fa-house-user"></i></div>
-            <h3>Kelas Private Home</h3>
-            <p>Pembelajaran privat di rumah Anda</p>
-            <h4 class="price-highlight">Rp 450.000 + Biaya Transport</h4>
-            <small class="note">*Biaya transport menyesuaikan jarak</small>
-            <br>
-            <a href="https://api.whatsapp.com/send/?phone=6285795899901&text=Halo+Admin%2C+saya+tertarik+dengan+kelas+Private+Home.+Bisa+tolong+informasikan+biaya+transport+untuk+area+saya%3F&type=phone_number&app_absent=0" target="_blank" class="btn-wa-transport">
-                <i class="fa-brands fa-whatsapp"></i> Tanya Biaya Transport
-            </a>
+          <div class="icon-box box-purple center-box"><i class="fa-solid fa-house-user"></i></div>
+          <h3>Kelas Private Home</h3>
+          <p>Pembelajaran privat di rumah Anda</p>
+          <h4 class="price-highlight">Rp 450.000 + Biaya Transport</h4>
+          <small class="note">*Biaya transport menyesuaikan jarak</small>
+          <br />
+          <a
+            href="https://api.whatsapp.com/send/?phone=6285795899901&text=Halo+Admin%2C+saya+tertarik+dengan+kelas+Private+Home.+Bisa+tolong+informasikan+biaya+transport+untuk+area+saya%3F&type=phone_number&app_absent=0"
+            target="_blank"
+            class="btn-wa-transport"
+          >
+            <i class="fa-brands fa-whatsapp"></i> Tanya Biaya Transport
+          </a>
         </div>
 
         <div class="extra-activities-grid">
-            <div class="activity-card">
-                <div class="icon-box box-orange center-box"><i class="fa-solid fa-screwdriver-wrench"></i></div>
-                <h4>Workshop & Bootcamp</h4>
-                <p>Pelatihan intensif untuk skill khusus</p>
-            </div>
-            <div class="activity-card">
-                <div class="icon-box box-yellow center-box"><i class="fa-solid fa-trophy"></i></div>
-                <h4>Kompetisi Robotik</h4>
-                <p>Lomba tingkat lokal & nasional</p>
-            </div>
-            <div class="activity-card">
-                <div class="icon-box box-blue center-box"><i class="fa-solid fa-bus"></i></div>
-                <h4>Sukarobot Go to School</h4>
-                <p>Program kunjungan ke sekolah</p>
-            </div>
+          <div class="activity-card">
+            <div class="icon-box box-orange center-box"><i class="fa-solid fa-screwdriver-wrench"></i></div>
+            <h4>Workshop & Bootcamp</h4>
+            <p>Pelatihan intensif untuk skill khusus</p>
+          </div>
+          <div class="activity-card">
+            <div class="icon-box box-yellow center-box"><i class="fa-solid fa-trophy"></i></div>
+            <h4>Kompetisi Robotik</h4>
+            <p>Lomba tingkat lokal & nasional</p>
+          </div>
+          <div class="activity-card">
+            <div class="icon-box box-blue center-box"><i class="fa-solid fa-bus"></i></div>
+            <h4>Sukarobot Go to School</h4>
+            <p>Program kunjungan ke sekolah</p>
+          </div>
         </div>
-    </div>
-</section>
+      </div>
+    </section>
 
-<!-- SECTION: PANDUAN PENDAFTARAN -->
-<section class="registration-guide-section">
-    <div class="container">
+    <!-- SECTION: PANDUAN PENDAFTARAN -->
+    <section class="registration-guide-section">
+      <div class="container">
         <div class="section-header center">
-            <h2 class="section-title">Panduan Pendaftaran</h2>
-            <p class="section-subtitle">4 Langkah mudah untuk memulai</p>
+          <h2 class="section-title">Panduan Pendaftaran</h2>
+          <p class="section-subtitle">4 Langkah mudah untuk memulai</p>
         </div>
 
         <div class="steps-grid-4">
-            <div class="step-card">
-                <div class="step-number step-1">1</div>
-                <h4>Pilih Program</h4>
-                <p>Pilih program atau produk yang sesuai</p>
-            </div>
-            <div class="step-card">
-                <div class="step-number step-2">2</div>
-                <h4>Hubungi Admin</h4>
-                <p>Hubungi admin atau isi formulir</p>
-            </div>
-            <div class="step-card">
-                <div class="step-number step-3">3</div>
-                <h4>Lakukan Pembayaran</h4>
-                <p>Proses pembayaran yang mudah</p>
-            </div>
-            <div class="step-card">
-                <div class="step-number step-4">4</div>
-                <h4>Siap Belajar</h4>
-                <p>Anak siap memulai pembelajaran</p>
-            </div>
+          <div class="step-card">
+            <div class="step-number step-1">1</div>
+            <h4>Pilih Program</h4>
+            <p>Pilih program atau produk yang sesuai</p>
+          </div>
+          <div class="step-card">
+            <div class="step-number step-2">2</div>
+            <h4>Hubungi Admin</h4>
+            <p>Hubungi admin atau isi formulir</p>
+          </div>
+          <div class="step-card">
+            <div class="step-number step-3">3</div>
+            <h4>Lakukan Pembayaran</h4>
+            <p>Proses pembayaran yang mudah</p>
+          </div>
+          <div class="step-card">
+            <div class="step-number step-4">4</div>
+            <h4>Siap Belajar</h4>
+            <p>Anak siap memulai pembelajaran</p>
+          </div>
         </div>
 
         <div class="cta-wrapper">
-            <a href="#daftar" class="btn-cta-orange">Daftar Sekarang</a>
+          <a href="#daftar" class="btn-cta-orange">Daftar Sekarang</a>
         </div>
-    </div>
-</section>
+      </div>
+    </section>
 
-<!-- SECTION: KEUNGGULAN PROGRAM -->
-<section class="features-section light-bg">
-    <div class="container">
+    <!-- SECTION: KEUNGGULAN PROGRAM -->
+    <section class="features-section light-bg">
+      <div class="container">
         <div class="section-header center">
-            <h2 class="section-title">Keunggulan Program</h2>
-            <p class="section-subtitle">Mengapa memilih Sukarobot Academy</p>
+          <h2 class="section-title">Keunggulan Program</h2>
+          <p class="section-subtitle">Mengapa memilih Sukarobot Academy</p>
         </div>
 
         <div class="features-grid-3">
-            <div class="feature-card">
-                <div class="icon-box box-purple center-box"><i class="fa-solid fa-certificate"></i></div>
-                <h3>Kurikulum Terstruktur</h3>
-                <p>Program pembelajaran yang sistematis dan terarah sesuai usia anak</p>
-            </div>
+          <div class="feature-card">
+            <div class="icon-box box-purple center-box"><i class="fa-solid fa-certificate"></i></div>
+            <h3>Kurikulum Terstruktur</h3>
+            <p>Program pembelajaran yang sistematis dan terarah sesuai usia anak</p>
+          </div>
 
-            <div class="feature-card">
-                <div class="icon-box box-blue center-box"><i class="fa-solid fa-atom"></i></div>
-                <h3>Instruktur Berpengalaman</h3>
-                <p>Pengajar tersertifikasi dengan metode pembelajaran yang menyenangkan</p>
-            </div>
+          <div class="feature-card">
+            <div class="icon-box box-blue center-box"><i class="fa-solid fa-atom"></i></div>
+            <h3>Instruktur Berpengalaman</h3>
+            <p>Pengajar tersertifikasi dengan metode pembelajaran yang menyenangkan</p>
+          </div>
 
-            <div class="feature-card">
-                <div class="feature-icon-wrapper">
-                    <div class="icon-box box-orange center-box"><i class="fa-solid fa-gamepad"></i></div>
-                </div>
-                <h3>Prestasi Terbukti</h3>
-                <p>Siswa meraih berbagai prestasi di kompetisi robotik nasional</p>
+          <div class="feature-card">
+            <div class="feature-icon-wrapper">
+              <div class="icon-box box-orange center-box"><i class="fa-solid fa-gamepad"></i></div>
             </div>
+            <h3>Prestasi Terbukti</h3>
+            <p>Siswa meraih berbagai prestasi di kompetisi robotik nasional</p>
+          </div>
         </div>
-    </div>
-</section>
+      </div>
+    </section>
 
-<!-- FOOTER / KONTAK SECTION (MODERN STYLE) -->
-<footer class="modern-footer" id="kontak">
-    <div class="footer-container">
+    <!-- FOOTER / KONTAK SECTION (MODERN STYLE) -->
+    <footer class="modern-footer" id="kontak">
+      <div class="footer-container">
         <div class="footer-grid">
-            <!-- Brand & Tagline -->
-            <div class="footer-col brand-col">
-                <div class="brand-wrapper">
-                    <h3 class="footer-logo"><img src="images/logo.png" alt=""></h3>
-                </div>
-                <p class="footer-desc">Mengembangkan potensi dan kreativitas anak melalui edukasi teknologi robotik & coding terstruktur.</p>
-                <a href="https://sukarobot.id/daftar" target="_blank" class="btn-footer-cta">
-                    Yuk daftarkan anak Anda sekarang! <i class="fa-solid fa-arrow-right"></i>
-                </a>
+          <!-- Brand & Tagline -->
+          <div class="footer-col brand-col">
+            <div class="brand-wrapper">
+              <h3 class="footer-logo"><img src="images/logo.png" alt="" /></h3>
             </div>
+            <p class="footer-desc">Mengembangkan potensi dan kreativitas anak melalui edukasi teknologi robotik & coding terstruktur.</p>
+            <a href="https://sukarobot.id/daftar" target="_blank" class="btn-footer-cta"> Yuk daftarkan anak Anda sekarang! <i class="fa-solid fa-arrow-right"></i> </a>
+          </div>
 
-            <!-- Kontak Informasi -->
-            <div class="footer-col">
-                <h4 class="footer-title">
-                    <span class="title-icon"><i class="fa-solid fa-headset"></i></span> Kontak Us
-                </h4>
-                <div class="contact-cards-wrapper">
-                    <a href="https://wa.me/6285795899901" target="_blank" class="contact-item-card">
-                        <div class="c-icon-box"><i class="fa-solid fa-phone"></i></div>
-                        <div>
-                            <span class="c-label">WhatsApp Admin</span>
-                            <span class="c-value">085795899901</span>
-                        </div>
-                    </a>
-
-                    <a href="mailto:sukarobotacademy@gmail.com" class="contact-item-card">
-                        <div class="c-icon-box"><i class="fa-solid fa-envelope"></i></div>
-                        <div>
-                            <span class="c-label">Email Support</span>
-                            <span class="c-value">sukarobotacademy@gmail.com</span>
-                        </div>
-                    </a>
-
-                    <div class="contact-item-card">
-                        <div class="c-icon-box"><i class="fa-solid fa-location-dot"></i></div>
-                        <div>
-                            <span class="c-label">Alamat Utama</span>
-                            <span class="c-value">Jl A.Yani No. 283 Cikole, Sukabumi</span>
-                        </div>
-                    </div>
+          <!-- Kontak Informasi -->
+          <div class="footer-col">
+            <h4 class="footer-title">
+              <span class="title-icon"><i class="fa-solid fa-headset"></i></span> Kontak Us
+            </h4>
+            <div class="contact-cards-wrapper">
+              <a href="https://wa.me/6285795899901" target="_blank" class="contact-item-card">
+                <div class="c-icon-box"><i class="fa-solid fa-phone"></i></div>
+                <div>
+                  <span class="c-label">WhatsApp Admin</span>
+                  <span class="c-value">085795899901</span>
                 </div>
-            </div>
+              </a>
 
-            <!-- Media Sosial -->
-            <div class="footer-col">
-                <h4 class="footer-title">
-                    <span class="title-icon"><i class="fa-solid fa-share-nodes"></i></span> Ikuti Kami
-                </h4>
-                <div class="social-cards-wrapper">
-                    <a href="https://instagram.com/sukarobot.academy" target="_blank" class="social-pill instagram">
-                        <i class="fa-brands fa-instagram"></i>
-                        <span>@sukarobot.academy</span>
-                    </a>
-                    <a href="https://facebook.com/sukarobot" target="_blank" class="social-pill facebook">
-                        <i class="fa-brands fa-facebook-f"></i>
-                        <span>sukarobot</span>
-                    </a>
-                    <a href="https://tiktok.com/@sukarobotacademy" target="_blank" class="social-pill tiktok">
-                        <i class="fa-brands fa-tiktok"></i>
-                        <span>@sukarobotacademy</span>
-                    </a>
+              <a href="mailto:sukarobotacademy@gmail.com" class="contact-item-card">
+                <div class="c-icon-box"><i class="fa-solid fa-envelope"></i></div>
+                <div>
+                  <span class="c-label">Email Support</span>
+                  <span class="c-value">sukarobotacademy@gmail.com</span>
                 </div>
+              </a>
+
+              <div class="contact-item-card">
+                <div class="c-icon-box"><i class="fa-solid fa-location-dot"></i></div>
+                <div>
+                  <span class="c-label">Alamat Utama</span>
+                  <span class="c-value">Jl A.Yani No. 283 Cikole, Sukabumi</span>
+                </div>
+              </div>
             </div>
+          </div>
+
+          <!-- Media Sosial -->
+          <div class="footer-col">
+            <h4 class="footer-title">
+              <span class="title-icon"><i class="fa-solid fa-share-nodes"></i></span> Ikuti Kami
+            </h4>
+            <div class="social-cards-wrapper">
+              <a href="https://instagram.com/sukarobot.academy" target="_blank" class="social-pill instagram">
+                <i class="fa-brands fa-instagram"></i>
+                <span>@sukarobot.academy</span>
+              </a>
+              <a href="https://facebook.com/sukarobot" target="_blank" class="social-pill facebook">
+                <i class="fa-brands fa-facebook-f"></i>
+                <span>sukarobot</span>
+              </a>
+              <a href="https://tiktok.com/@sukarobotacademy" target="_blank" class="social-pill tiktok">
+                <i class="fa-brands fa-tiktok"></i>
+                <span>@sukarobotacademy</span>
+              </a>
+            </div>
+          </div>
         </div>
 
         <!-- Copyright -->
         <div class="footer-bottom">
-            <p>&copy; 2026 <strong>Sukarobot Academy</strong>. All rights reserved.</p>
+          <p>&copy; 2026 <strong>Sukarobot Academy</strong>. All rights reserved.</p>
         </div>
-    </div>
-</footer>
+      </div>
+    </footer>
 
     <!-- WhatsApp Float Button -->
     <div class="fixed bottom-6 right-6 z-50">
-        <a href="https://wa.me/6285795899901?text=Halo%20Admin%20Sukarobot%20Academy,%20saya%20ingin%20bertanya%20tentang%20program%20pembelajaran%20robotik%20dan%20coding." target="_blank" rel="noopener noreferrer" class="bg-green-500 hover:bg-green-600 text-white p-4 rounded-full shadow-lg transition-all duration-300 hover:scale-110 flex items-center justify-center group">
-            <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24">
-                <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0020.885 3.488"/>
-            </svg>
-            <span class="absolute -top-2 -left-2 bg-red-500 text-white text-xs rounded-full w-6 h-6 flex items-center justify-center animate-pulse">!</span>
-            <div class="absolute right-full mr-3 bg-gray-800 text-white px-3 py-2 rounded-lg text-sm whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                Tanya Admin
-            </div>
-        </a>
+      <a
+        href="https://wa.me/6285795899901?text=Halo%20Admin%20Sukarobot%20Academy,%20saya%20ingin%20bertanya%20tentang%20program%20pembelajaran%20robotik%20dan%20coding."
+        target="_blank"
+        rel="noopener noreferrer"
+        class="bg-green-500 hover:bg-green-600 text-white p-4 rounded-full shadow-lg transition-all duration-300 hover:scale-110 flex items-center justify-center group"
+      >
+        <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24">
+          <path
+            d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0020.885 3.488"
+          />
+        </svg>
+        <span class="absolute -top-2 -left-2 bg-red-500 text-white text-xs rounded-full w-6 h-6 flex items-center justify-center animate-pulse">!</span>
+        <div class="absolute right-full mr-3 bg-gray-800 text-white px-3 py-2 rounded-lg text-sm whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity duration-300">Tanya Admin</div>
+      </a>
     </div>
 
     <script src="js/script.js"></script>
-</body>
+    <script>
+      // ====== Dropdown Brosur (tambahan) ======
+      function toggleBrosurDropdown(e) {
+        e.stopPropagation();
+        var dropdown = document.getElementById('brosurDropdown');
+        var isActive = dropdown.classList.toggle('active');
+        dropdown.querySelector('button').setAttribute('aria-expanded', isActive);
+      }
+      document.addEventListener('click', function (e) {
+        var dropdown = document.getElementById('brosurDropdown');
+        if (dropdown && !dropdown.contains(e.target)) {
+          dropdown.classList.remove('active');
+          dropdown.querySelector('button').setAttribute('aria-expanded', 'false');
+        }
+      });
+    </script>
+  </body>
 </html>
