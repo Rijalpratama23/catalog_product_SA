@@ -49,11 +49,17 @@ body {
 /* ==========================================================================
    Typography & Helper Classes
    ========================================================================== */
-h1, h2, h3, h4 {
+h1, h2, h3, h4, h5, h6 {
     color: var(--primary-navy);
-    font-weight: 700;
-    line-height: 1.2;
+    font-weight: 800;
+    line-height: 1.25;
+    letter-spacing: -0.02em;
 }
+
+h1 { font-size: 2.75rem; font-weight: 800; }
+h2 { font-size: 2.15rem; font-weight: 800; }
+h3 { font-size: 1.3rem; font-weight: 700; }
+h4 { font-size: 1.1rem; font-weight: 700; }
 
 a {
     text-decoration: none;
@@ -76,34 +82,36 @@ ul {
 }
 
 .section {
-    padding: 50px 0; /* Dikurangi dari 80px */
+    padding: 45px 0;
 }
 
 .section-header {
     text-align: center;
-    margin-bottom: 30px; /* Dikurangi dari 50px */
+    margin-bottom: 24px;
 }
 
 .section-header h2 {
-    font-size: 2.25rem;
+    font-size: 2.2rem;
+    font-weight: 800;
+    letter-spacing: -0.5px;
     margin-top: 8px;
-    margin-bottom: 12px;
+    margin-bottom: 10px;
 }
 
 .section-header p {
     color: var(--text-muted);
-    font-size: 1.1rem;
-    max-width: 600px;
+    font-size: 1.05rem;
+    max-width: 620px;
     margin: 0 auto;
 }
 
 .section-tag {
     display: inline-block;
-    padding: 6px 16px;
+    padding: 5px 16px;
     background-color: var(--accent-cyan-light);
     color: var(--accent-blue);
-    font-weight: 600;
-    font-size: 0.875rem;
+    font-weight: 700;
+    font-size: 0.825rem;
     border-radius: 20px;
     text-transform: uppercase;
     letter-spacing: 0.5px;
@@ -117,7 +125,7 @@ ul {
 
 .grid {
     display: grid;
-    gap: 20px; /* Dikurangi dari 30px */
+    gap: 18px;
 }
 
 .grid-2 { grid-template-columns: repeat(2, 1fr); }
@@ -285,18 +293,21 @@ ul {
     padding: 6px 14px;
     border-radius: 20px;
     font-size: 0.875rem;
-    font-weight: 600;
+    font-weight: 700;
 }
 
 .hero-title {
     font-size: 3.25rem;
+    font-weight: 800;
+    line-height: 1.18;
+    color: var(--primary-navy);
     margin: 16px 0;
 }
 
 .hero-subtitle {
-    font-size: 1.15rem;
+    font-size: 1.12rem;
     color: var(--text-muted);
-    margin-bottom: 20px; /* Dikurangi dari 32px */
+    margin-bottom: 18px;
 }
 
 .hero-buttons {
@@ -493,27 +504,46 @@ ul {
    About Section Custom Styles
    ========================================================================== */
 .about-top-grid {
-    margin-bottom: 20px; /* Dikurangi dari 30px */
+    margin-bottom: 18px;
+}
+
+.about-bottom-grid {
+    align-items: stretch;
 }
 
 .card-about-info {
     display: flex;
-    justify-content: space-between;
-    align-items: center;
+    flex-direction: column;
+    justify-content: flex-start;
+    height: 100%;
     position: relative;
     overflow: hidden;
+    padding: 24px;
+}
+
+.about-card-content {
+    width: 100%;
 }
 
 .about-card-header {
     display: flex;
     align-items: center;
-    gap: 12px;
-    margin-bottom: 16px; /* Dikurangi dari 20px */
+    gap: 14px;
+    margin-bottom: 16px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid #F1F5F9;
+}
+
+.about-card-header h3 {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--primary-navy);
+    margin: 0;
 }
 
 .about-icon {
-    width: 45px;
-    height: 45px;
+    width: 44px;
+    height: 44px;
     border-radius: 12px;
     display: flex;
     align-items: center;
@@ -523,8 +553,8 @@ ul {
 }
 
 .bg-yellow { 
-    background-color: #FEFCE8 !important; 
-    color: #D97706 !important; 
+    background-color: #FEF9C3 !important; 
+    color: #CA8A04 !important; 
 }
 
 .about-list {
@@ -535,49 +565,25 @@ ul {
 
 .about-list li {
     font-size: 0.95rem;
+    font-weight: 500;
     color: var(--text-dark);
     display: flex;
     align-items: center;
-    gap: 10px;
+    gap: 12px;
+    padding: 6px 10px;
+    border-radius: 8px;
+    transition: background-color 0.2s ease, transform 0.2s ease;
+}
+
+.about-list li:hover {
+    background-color: #F8FAFC;
+    transform: translateX(4px);
 }
 
 .about-list li i {
     color: var(--accent-cyan);
-    font-size: 1rem;
-}
-
-.about-card-illustration {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding-left: 20px;
-}
-
-.target-badge-graphic {
-    width: 90px;
-    height: 90px;
-    border-radius: 50%;
-    background: linear-gradient(135deg, var(--accent-cyan-light), #DBEAFE);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 2.5rem;
-    color: var(--accent-cyan);
-    box-shadow: 0 10px 25px rgba(6, 182, 212, 0.2);
-    animation: float 3s ease-in-out infinite;
-}
-
-@media (max-width: 768px) {
-    .card-about-info {
-        flex-direction: column;
-        align-items: flex-start;
-    }
-    
-    .about-card-illustration {
-        margin-top: 16px;
-        align-self: center;
-        padding-left: 0;
-    }
+    font-size: 1.05rem;
+    flex-shrink: 0;
 }
 
 /* ==========================================================================
@@ -908,33 +914,35 @@ ul {
 ========================================== */
 .light-bg {
     background-color: #F8FAFC;
-    padding: 40px 0; /* Dikurangi dari 60px 0 */
+    padding: 45px 0;
 }
 
 .facilities-section {
-    padding: 35px 0; /* Dikurangi dari 50px 0 */
+    padding: 45px 0;
     background-color: #FFFFFF;
 }
 
 .section-title {
     text-align: center;
-    font-size: 1.8rem;
-    font-weight: 700;
+    font-size: 2rem;
+    font-weight: 800;
     color: #0F172A;
-    margin-bottom: 20px; /* Dikurangi dari 30px */
+    letter-spacing: -0.5px;
+    margin-bottom: 18px;
 }
 
 .section-subtitle {
     text-align: center;
     color: #64748B;
-    margin-top: -15px; /* Sedikit disesuaikan agar proporsional */
-    margin-bottom: 25px; /* Dikurangi dari 35px */
+    font-size: 1.05rem;
+    margin-top: -10px;
+    margin-bottom: 24px;
 }
 
 .info-grid-4 {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 15px; /* Dikurangi dari 20px */
+    gap: 18px;
 }
 
 .info-card {
@@ -2003,4 +2011,82 @@ ul {
 
     .nav-links.active { left: 0; }
     .footer-grid { grid-template-columns: 1fr; }
+}
+
+/* ==========================================================================
+   WhatsApp Floating Button
+   ========================================================================== */
+.whatsapp-float-container {
+    position: fixed;
+    bottom: 24px;
+    right: 24px;
+    z-index: 1050;
+}
+
+.whatsapp-float-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 60px;
+    height: 60px;
+    background-color: #22C55E;
+    color: #FFFFFF;
+    border-radius: 50%;
+    box-shadow: 0 8px 24px rgba(34, 197, 94, 0.4);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    text-decoration: none;
+}
+
+.whatsapp-float-btn:hover {
+    background-color: #16A34A;
+    transform: scale(1.1);
+    box-shadow: 0 12px 28px rgba(34, 197, 94, 0.55);
+}
+
+.whatsapp-float-btn svg {
+    width: 32px;
+    height: 32px;
+    fill: currentColor;
+}
+
+.whatsapp-badge {
+    position: absolute;
+    top: -3px;
+    left: -3px;
+    background-color: #EF4444;
+    color: #FFFFFF;
+    font-size: 0.75rem;
+    font-weight: 800;
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid #FFFFFF;
+    animation: pulse 2s infinite;
+}
+
+.whatsapp-tooltip {
+    position: absolute;
+    right: calc(100% + 12px);
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: #1E293B;
+    color: #FFFFFF;
+    padding: 6px 14px;
+    border-radius: 8px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    white-space: nowrap;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+
+.whatsapp-float-btn:hover .whatsapp-tooltip {
+    opacity: 1;
+    transform: translateY(-50%) translateX(-4px);
 }
