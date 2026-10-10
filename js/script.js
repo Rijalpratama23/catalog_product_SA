@@ -131,104 +131,6 @@ const programsData = [
         level: 'Pemula Lanjutan',
         price: 'Rp 950.000',
         syllabus: ['Scratch Blocks', 'Variabel & Perulangan', 'Desain Karakter', 'Pembuatan Game 2D']
-    },
-    {
-        id: 'desain-grafis-basic',
-        title: 'DESAIN GRAFIS (BASIC)',
-        category: 'desain',
-        categoryName: 'Desain',
-        description: 'Memperkenalkan pada prinsip dasar desain, penggunaan warna, tipografi, dan software editing untuk membuat karya visual sederhana yang menarik dan kreatif.',
-        duration: '24 Pertemuan (6 Bulan)',
-        age: '12+ Tahun',
-        image: 'images/coverdgb.png',
-        icon: '🎨',
-        level: 'Pemula',
-        price: 'Rp 1.100.000',
-        syllabus: ['Teori Warna & Layout', 'Pengenalan Software Vector', 'Editing Foto Dasar', 'Pembuatan Poster']
-    },
-    {
-        id: 'desain-grafis-advance',
-        title: 'DESAIN GRAFIS (ADVANCE)',
-        category: 'desain',
-        categoryName: 'Desain',
-        description: 'Mengembangkan keterampilan desain lebih mendalam dengan teknik lanjutan, pembuatan karya profesional, serta penerapan desain untuk branding dan promosi.',
-        duration: '24 Pertemuan (6 Bulan)',
-        age: '16+ Tahun',
-        image: 'images/coverdgadv.png',
-        icon: '🖌️',
-        level: 'Mahir',
-        price: 'Rp 1.400.000',
-        syllabus: ['Brand Identity Design', '3D Graphics Basic', 'UI/UX Overview', 'Portofolio Profesional']
-    },
-    {
-        id: 'web-programming-basic',
-        title: 'WEB PROGRAMMING (BASIC)',
-        category: 'programming',
-        categoryName: 'Programming',
-        description: 'Belajar dasar-dasar HTML, CSS, dan struktur halaman web untuk membuat website sederhana yang menarik, responsif, dan fungsional.',
-        duration: '16 Pertemuan (4 Bulan)',
-        age: '12+ Tahun',
-        image: 'images/coverwebproB.jpg',
-        icon: '🌐',
-        level: 'Pemula',
-        price: 'Rp 1.200.000',
-        syllabus: ['HTML5 Tag & Structure', 'CSS3 Styling & Flexbox', 'Responsive Design', 'Web Hosting Dasar']
-    },
-    {
-        id: 'web-programming-intermediate',
-        title: 'WEB PROGRAMMING (INTERMEDIATE)',
-        category: 'programming',
-        categoryName: 'Programming',
-        description: 'Mempelajari JavaScript dasar, logika pemrograman web, serta pengembangan fitur interaktif agar website menjadi lebih dinamis dan fungsional.',
-        duration: '16 Pertemuan (4 Bulan)',
-        age: '16+ Tahun',
-        image: 'images/coverwebproI.jpg',
-        icon: '⚡',
-        level: 'Menengah',
-        price: 'Rp 1.450.000',
-        syllabus: ['JavaScript ES6+', 'DOM Manipulation', 'Event Handling', 'Fetch API Integration']
-    },
-    {
-        id: 'web-programming-advance',
-        title: 'WEB PROGRAMMING (ADVANCE)',
-        category: 'programming',
-        categoryName: 'Programming',
-        description: 'Belajar framework modern dan teknik pengembangan aplikasi web berskala besar, sehingga siap membangun website profesional dengan fitur kompleks.',
-        duration: '24 Pertemuan (6 Bulan)',
-        age: '18+ Tahun',
-        image: 'images/coverwebproA.jpg',
-        icon: '🚀',
-        level: 'Mahir',
-        price: 'Rp 1.850.000',
-        syllabus: ['Modern JS Frameworks', 'Backend & Database', 'Authentication', 'Fullstack Deployment']
-    },
-    {
-        id: 'ms-office',
-        title: 'MS. OFFICE',
-        category: 'office',
-        categoryName: 'MS. Office',
-        description: 'Belajar menguasai Microsoft Word, Excel, dan PowerPoint untuk membuat dokumen, mengolah data, serta presentasi profesional yang mendukung kebutuhan akademik maupun pekerjaan.',
-        duration: '24 Pertemuan (6 Bulan)',
-        age: '16+ Tahun',
-        image: 'images/covermso.png',
-        icon: '📊',
-        level: 'Semua Tingkat',
-        price: 'Rp 950.000',
-        syllabus: ['Word Document Formats', 'Excel Formulas & VLOOKUP', 'PowerPoint Presentation', 'Data Automation']
-    },
-    {
-        id: 'digital-marketing',
-        title: 'DIGITAL MARKETING',
-        category: 'marketing',
-        categoryName: 'Digital Marketing',
-        description: 'Belajar strategi pemasaran online melalui media sosial, SEO, dan iklan digital untuk meningkatkan brand awareness, menarik pelanggan, serta mengembangkan bisnis secara efektif.',
-        duration: '24 Pertemuan (6 Bulan)',
-        age: '18+ Tahun',
-        image: 'images/coverdm.jpg',
-        icon: '📈',
-        level: 'Semua Tingkat',
-        price: 'Rp 1.500.000',
-        syllabus: ['Social Media Strategy', 'Search Engine Optimization', 'FB/Google Ads', 'Content Marketing']
     }
 ];
 
@@ -285,9 +187,7 @@ function applyFilterAndSearch() {
         // Match Category
         const matchCategory = cur === 'all' || 
                               cat === cur || 
-                              catName === cur ||
-                              (cur.includes('office') && cat === 'office') ||
-                              (cur.includes('marketing') && cat === 'marketing');
+                              catName === cur;
 
         // Match Search Query
         const matchSearch = !currentSearch ||
